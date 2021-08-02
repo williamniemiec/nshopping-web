@@ -8,6 +8,15 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-fab top right edge>
+    <button navPush="CartPage" ion-fab mini>
+      <ion-icon name="cart"></ion-icon>
+    </button>
+  </ion-fab>
   <ion-list>
     <button ion-item *ngFor="let item of items" (click)="showDetails(item.id)">
       <ion-thumbnail item-start>
@@ -17,4 +26,10 @@
       <p>{{item.price | currency}}</p>
     </button>
   </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="loadMoreProducts($event)">
+    <ion-infinite-scroll-content
+      loadingText="Loading more products...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

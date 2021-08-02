@@ -10,8 +10,8 @@ export class ProductService {
   constructor(public http: HttpClient) {
   }
 
-  findByCategory(categoryId: string): Observable<ProductDTO[]> {
-    return this.http.get<ProductDTO[]>(`${API_CONFIG.baseUrl}/products?categories=${categoryId}`);
+  findByCategory(categoryId: string, page: number = 0, linesPerPage: number = 24): Observable<ProductDTO[]> {
+    return this.http.get<ProductDTO[]>(`${API_CONFIG.baseUrl}/products?categories=${categoryId}&page=${page}&linesPerPage=${linesPerPage}`);
   }
 
   findById(productId: string): Observable<ProductDTO> {

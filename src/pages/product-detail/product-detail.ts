@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { API_CONFIG } from '../../config/api.config';
 import { ProductDTO } from '../../dto/ProductDTO';
+import { CartService } from '../../services/CartService';
 import { ProductService } from '../../services/domain/ProductService';
 
 @IonicPage()
@@ -16,7 +17,8 @@ export class ProductDetailPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public productService: ProductService
+    public productService: ProductService,
+    public cartService: CartService
   ) {
   }
 
@@ -44,5 +46,10 @@ export class ProductDetailPage {
         (error) => {
         }
       );
+  }
+
+  addToCart(item: ProductDTO) {
+    this.cartService.addProduct(item);
+    this.navCtrl.setRoot('CartPage');
   }
 }
