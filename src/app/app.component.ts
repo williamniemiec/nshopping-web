@@ -1,33 +1,36 @@
-import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { AuthService } from '../services/AuthService';
+import { Component } from '@angular/core';
+import { Platform } from '@ionic/angular';
+import { StatusBar } from "@ionic-native/status-bar/ngx";
+import { SplashScreen } from "@ionic-native/splash-screen/ngx";
+import { AuthService } from './services/AuthService';
+import { Router } from '@angular/router';
 
 @Component({
-  templateUrl: 'app.html'
+  selector: 'app-root',
+  templateUrl: 'app.component.html'
 })
 export class MyApp {
-  @ViewChild(Nav) nav: Nav;
+  //@ViewChild(NavController) nav: NavController;
 
-  rootPage: string = 'HomePage';
+  rootPage: string = '/home';
 
-  pages: Array<{title: string, component: string}>;
+  pages: Array<{title: string, path: string}>;
 
   constructor(
     public platform: Platform, 
+    public router: Router,
     public statusBar: StatusBar, 
     public splashScreen: SplashScreen,
     public authService: AuthService
   ) {
-    this.initializeApp();
+    //this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Categories', component: 'CategoriesPage' },
-      { title: 'Cart', component: 'CartPage' },
-      { title: 'Profile', component: 'ProfilePage' },
-      { title: 'Logout', component: '' }
+      { title: 'Categories', path: '/categories' },
+      { title: 'Cart', path: '/cart' },
+      { title: 'Profile', path: '/profile' },
+      { title: 'Logout', path: '' }
     ];
 
   }
@@ -41,14 +44,14 @@ export class MyApp {
     });
   }
 
-  openPage(page: {title: string, component: string}) {
+  openPage(page: {title: string, path: string}) {
     switch (page.title) {
       case 'Logout':
         this.authService.logout();
-        this.nav.setRoot('HomePage');
+        this.router.navigateByUrl('home');
         break;
       default:
-        this.nav.setRoot(page.component);
+        this.router.navigateByUrl(page.path);
     }
   }
 }

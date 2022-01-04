@@ -1,0 +1,19 @@
+<ion-content padding>
+  <h3>nShopping</h3>
+
+  <img src="/assets/images/search.png" alt="logo" />
+
+  <form>
+    <ion-item>
+      <ion-label stacked>Email</ion-label>
+      <ion-input [(ngModel)]="credentials.email" name="email" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Password</ion-label>
+      <ion-input [(ngModel)]="credentials.password" name="password" type="password"></ion-input>
+    </ion-item>
+    <ion-button expand="block" (click)="login()">Sign in</ion-button>
+  </form>
+
+  <ion-button expand="block" fill="outline" (click)="signup()">Sign up</ion-button>
+</ion-content>

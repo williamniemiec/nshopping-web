@@ -1,21 +1,23 @@
+import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-
+import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { ErrorhandlingService } from './services/ErrorHandleService';
+import { RouteReuseStrategy } from '@angular/router';
 import { MyApp } from './app.component';
 
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { CategoryService } from '../services/domain/CategoryService';
-import { ErrorInterceptorProvider } from '../interceptors/ErrorInterceptor';
-import { AuthService } from '../services/AuthService';
-import { StorageService } from '../services/StorageService';
-import { ClientService } from '../services/domain/ClientService';
-import { AuthInterceptorProvider } from '../interceptors/AuthInterceptor';
-import { ProductService } from '../services/domain/ProductService';
-import { CartService } from '../services/CartService';
-import { ImageService } from '../services/ImageService';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { CategoryService } from './services/domain/CategoryService';
+import { ErrorInterceptorProvider } from './interceptors/ErrorInterceptor';
+import { AuthService } from './services/AuthService';
+import { StorageService } from './services/StorageService';
+import { ClientService } from './services/domain/ClientService';
+import { AuthInterceptorProvider } from './interceptors/AuthInterceptor';
+import { ProductService } from './services/domain/ProductService';
+import { CartService } from './services/CartService';
+import { ImageService } from './services/ImageService';
 
 @NgModule({
   declarations: [
@@ -24,16 +26,15 @@ import { ImageService } from '../services/ImageService';
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(),
+    AppRoutingModule
   ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp
-  ],
+  bootstrap: [MyApp],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    {provide: ErrorHandler, useClass: ErrorhandlingService},
+    {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
     CategoryService,
     AuthInterceptorProvider,
     ErrorInterceptorProvider,

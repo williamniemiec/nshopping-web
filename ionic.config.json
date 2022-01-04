@@ -1,8 +1,7 @@
 {
-  "name": "nshop-frontend",
-  "app_id": "",
-  "type": "ionic-angular",
+  "name": "nshopping-web",
   "integrations": {
     "cordova": {}
-  }
+  },
+  "type": "angular"
 }
