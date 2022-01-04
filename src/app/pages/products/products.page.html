@@ -1,8 +1,11 @@
 <ion-header>
   <ion-toolbar>
-    <ion-menu-toggle>
-      <ion-icon name="menu"></ion-icon>
-    </ion-menu-toggle>
+    <ion-buttons slot="start">
+      <ion-menu-toggle>
+        <ion-menu-button></ion-menu-button>
+      </ion-menu-toggle>
+      <ion-back-button  defaultHref="home"></ion-back-button>
+  </ion-buttons>
     <ion-title>Products</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -12,8 +15,8 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <ion-fab vertical="top" horizontal="end" edge>
-    <ion-fab-button navPush="CartPage" mini>
+  <ion-fab vertical="top" horizontal="end" slot="fixed" edge>
+    <ion-fab-button click)="redirectToCartPage()" mini>
       <ion-icon name="cart"></ion-icon>
     </ion-fab-button>
   </ion-fab>

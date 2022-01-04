@@ -14,7 +14,7 @@ export class MyApp {
 
   rootPage: string = '/home';
 
-  pages: Array<{title: string, path: string}>;
+  pages: Array<{title: string, url: string, icon:string}>;
 
   constructor(
     public platform: Platform, 
@@ -27,10 +27,10 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Categories', path: '/categories' },
-      { title: 'Cart', path: '/cart' },
-      { title: 'Profile', path: '/profile' },
-      { title: 'Logout', path: '' }
+      { title: 'Categories', url: '/categories', icon: "copy" },
+      { title: 'Cart', url: '/cart', icon: "cart" },
+      { title: 'Profile', url: '/profile', icon: "person-circle" },
+      { title: 'Logout', url: '', icon: "log-out" }
     ];
 
   }
@@ -44,14 +44,14 @@ export class MyApp {
     });
   }
 
-  openPage(page: {title: string, path: string}) {
+  openPage(page: {title: string, url: string, icon:string}) {
     switch (page.title) {
       case 'Logout':
         this.authService.logout();
         this.router.navigateByUrl('home');
         break;
       default:
-        this.router.navigateByUrl(page.path);
+        this.router.navigateByUrl(page.url);
     }
   }
 }

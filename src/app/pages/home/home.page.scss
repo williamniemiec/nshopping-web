@@ -9,3 +9,21 @@ img {
   display: block;
   padding: 10px;
 }
+
+.container-centered {
+  background-image: url('/assets/images/background.jpg');
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#login-area {
+  max-width: 500px;
+  border-radius: 10px;
+  border: 1px solid #333;
+  background-color: rgba(#aaa, 0.7);
+}

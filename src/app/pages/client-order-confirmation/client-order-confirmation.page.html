@@ -1,12 +1,17 @@
 <ion-header>
   <ion-toolbar>
-    <ion-menu-toggle>
-      <ion-icon name="menu"></ion-icon>
-    </ion-menu-toggle>
-    <ion-title *ngIf="!orderId">Order confirmation</ion-title>
-    <ion-title *ngIf="orderId">Order confirmed</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-toggle>
+        <ion-menu-button></ion-menu-button>
+      </ion-menu-toggle>
+      <ion-back-button  defaultHref="home"></ion-back-button>
+  </ion-buttons>
+  <ion-title *ngIf="!orderId">Order confirmation</ion-title>
+  <ion-title *ngIf="orderId">Order confirmed</ion-title>
   </ion-toolbar>
 </ion-header>
+
+
 
 <ion-content padding>
   <div *ngIf="!orderId">
@@ -72,6 +77,7 @@
     <ion-button *ngIf="!orderId" expand="block" (click)="checkout()">Checkout</ion-button>
     <ion-button fill="outline" expand="block" (click)="backToCart()">Back</ion-button>
   </div>
+  
   <div *ngIf="orderId">
     <ion-card>
       <ion-card-header>

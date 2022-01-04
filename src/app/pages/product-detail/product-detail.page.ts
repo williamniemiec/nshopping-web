@@ -54,4 +54,8 @@ export class ProductDetailPage implements OnInit {
     this.cartService.addProduct(item);
     this.router.navigateByUrl('cart');
   }
+
+  redirectToCartPage() {
+    this.router.navigateByUrl('cart');
+  }
 }

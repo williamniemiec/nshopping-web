@@ -41,4 +41,8 @@ export class CategoriesPage implements OnInit {
   showProducts(categoryId: string) {
     this.router.navigateByUrl('products/' + categoryId);
   }
+
+  redirectToCartPage() {
+    this.router.navigateByUrl('cart');
+  }
 }

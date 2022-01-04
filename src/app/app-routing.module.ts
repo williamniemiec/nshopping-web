@@ -32,6 +32,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/cart/cart.module').then( m => m.CartPageModule)
   },
   {
+    path: 'profile',
+    loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule)
+  },
+  {
     path: 'pick-address',
     loadChildren: () => import('./pages/pick-address/pick-address.module').then( m => m.PickAddressPageModule)
   },

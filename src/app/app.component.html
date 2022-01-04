@@ -7,11 +7,14 @@
     </ion-header>
 
     <ion-content>
-      <ion-list>
-        <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-          {{p.title}}
-        </button>
-      </ion-list>
+      <ion-list *ngFor="let page of pages">
+        <ion-menu-toggle auto-hide="true">
+          <ion-item [routerLink]="page.url" routerDirection="forward">
+              <ion-icon [name]="page.icon" slot="start"></ion-icon>
+                 {{page.title}} 
+          </ion-item>
+        </ion-menu-toggle>
+        </ion-list>
     </ion-content>
   </ion-menu>
   <ion-router-outlet id="main-content"></ion-router-outlet>

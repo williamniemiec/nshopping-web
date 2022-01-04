@@ -95,4 +95,8 @@ export class ProductsPage implements OnInit {
       infiniteScroll.target.complete();
     }, 1000);
   }
+
+  redirectToCartPage() {
+    this.router.navigateByUrl('cart');
+  }
 }

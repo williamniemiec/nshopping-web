@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { CameraOriginal, CameraOptions } from '@ionic-native/camera';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 import { NavParams } from '@ionic/angular';
 import { API_CONFIG } from '../../config/api.config';
 import { ClientDTO } from '../../dto/ClientDTO';
@@ -14,7 +14,7 @@ import { StorageService } from '../../services/StorageService';
   templateUrl: 'profile.page.html',
   styleUrls: ['./profile.page.scss']
 })
-export class ProfilePage {
+export class ProfilePage implements OnInit {
 
   client: ClientDTO;
   picture: string;
@@ -23,17 +23,17 @@ export class ProfilePage {
 
   constructor(
     public router: Router, 
-    public navParams: NavParams,
+    //public navParams: NavParams,
     public storageService: StorageService,
     public clientService: ClientService,
-    private camera: CameraOriginal,
+    //private camera: Camera,
     public imageService: ImageService,
     public sanitizer: DomSanitizer
   ) {
     this.profileImage = 'assets/images/avatar-blank.png';
   }
 
-  ionViewDidLoad() {
+  ngOnInit() {
     this.loadData();
   }
 
@@ -79,12 +79,12 @@ export class ProfilePage {
     this.cameraOn = true;
     const options: CameraOptions = {
       quality: 100,
-      destinationType: this.camera.DestinationType.DATA_URL,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
+      destinationType: Camera.DestinationType.DATA_URL,
+      encodingType: Camera.EncodingType.JPEG,
+      mediaType: Camera.MediaType.PICTURE
     };
 
-    this.camera.getPicture(options).then((imageData) => {
+    Camera.getPicture(options).then((imageData) => {
       this.picture = 'data:image/jpeg;base64,' + imageData;
       this.cameraOn = false;
     }, (err) => {
@@ -97,13 +97,13 @@ export class ProfilePage {
     this.cameraOn = true;
     const options: CameraOptions = {
       quality: 100,
-      destinationType: this.camera.DestinationType.DATA_URL,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE,
-      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
+      destinationType: Camera.DestinationType.DATA_URL,
+      encodingType: Camera.EncodingType.JPEG,
+      mediaType: Camera.MediaType.PICTURE,
+      sourceType: Camera.PictureSourceType.PHOTOLIBRARY
     };
 
-    this.camera.getPicture(options).then((imageData) => {
+    Camera.getPicture(options).then((imageData) => {
       this.picture = 'data:image/jpeg;base64,' + imageData;
       this.cameraOn = false;
     }, (err) => {

@@ -24,3 +24,40 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+@import "./theme/variables.scss";
+
+ion-item {
+    --highlight-color-invalid: var(--ion-color-danger); // invalid underline color
+    --highlight-color-valid: var(--ion-color-primary); // valid underline color
+}
+
+.container {
+    min-height: 100vh;
+    width: 100vw;
+    background-image: url('/assets/images/background.jpg');
+    background-position: center;
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    padding: 50px;
+}
+
+.container-area {
+    max-width: 800px;
+    margin: auto;
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px solid #333;
+    background-color: rgba(#aaa, 0.7);
+}
+
+.logo-area {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.logo-img {
+    width: 200px;
+}
