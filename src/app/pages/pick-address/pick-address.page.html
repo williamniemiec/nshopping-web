@@ -1,8 +1,8 @@
 <ion-header>
   <ion-toolbar>
-    <button ion-button menuToggle>
+    <ion-menu-toggle>
       <ion-icon name="menu"></ion-icon>
-    </button>
+    </ion-menu-toggle>
     <ion-title>Closing order</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -12,10 +12,10 @@
     <ion-list-header>
       Select an address
     </ion-list-header>
-    <button ion-item *ngFor="let item of items" (click)="handleAddressSelection(item)">
+    <ion-item *ngFor="let item of items" (click)="handleAddressSelection(item)">
       <h2>{{item.streetName}}, {{item.number}}</h2>
       <p>{{item.apt}} {{item.district}} {{item.zip}}</p>
       <p>{{item.city.name}}, {{item.city.state.name}}</p>
-    </button>
+    </ion-item>
   </ion-list>
 </ion-content>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
@@ -13,7 +13,7 @@ import { StateService } from '../../services/domain/StateService';
   templateUrl: './signup.page.html',
   styleUrls: ['./signup.page.scss']
 })
-export class SignUpPage {
+export class SignUpPage implements OnInit {
 
   formGroup: FormGroup;
   states: StateDTO[];
@@ -47,7 +47,7 @@ export class SignUpPage {
     });
   }
 
-  ionViewDidLoad() {
+  ngOnInit() {
     this.stateService
       .findAll()
       .subscribe(

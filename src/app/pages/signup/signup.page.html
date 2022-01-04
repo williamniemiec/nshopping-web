@@ -88,6 +88,6 @@
         <ion-select-option *ngFor="let city of cities;" [value]="city.id">{{city.name}}</ion-select-option>
       </ion-select>
     </ion-item>
-    <button ion-button block type="submit" [disabled]="formGroup.invalid">Sign up</button>
+    <ion-button expand="block" type="submit" [disabled]="formGroup.invalid">Sign up</ion-button>
   </form>
 </ion-content>

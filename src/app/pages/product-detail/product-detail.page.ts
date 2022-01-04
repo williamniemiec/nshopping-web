@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NavParams } from '@ionic/angular';
 import { API_CONFIG } from '../../config/api.config';
@@ -11,7 +11,7 @@ import { ProductService } from '../../services/domain/ProductService';
   templateUrl: 'product-detail.page.html',
   styleUrls: ['./product-detail.page.scss']
 })
-export class ProductDetailPage {
+export class ProductDetailPage implements OnInit {
 
   item: ProductDTO;
 
@@ -24,8 +24,8 @@ export class ProductDetailPage {
   ) {
   }
 
-  ionViewDidLoad() {
-    /*const productId = this.navParams.get('productId');
+  ngOnInit() {
+    const productId = this.routeParams.snapshot.params.id;
 
     this.productService
       .findById(productId)
@@ -35,7 +35,7 @@ export class ProductDetailPage {
           this.getImageIfExists();
         },
         (error) => {}
-      );*/
+      );
   }
 
   getImageIfExists() {

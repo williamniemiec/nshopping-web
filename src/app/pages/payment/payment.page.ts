@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClientOrderDTO } from '../../dto/ClientOrderDTO';
@@ -8,7 +8,7 @@ import { ClientOrderDTO } from '../../dto/ClientOrderDTO';
   templateUrl: 'payment.page.html',
   styleUrls: ['./payment.page.scss']
 })
-export class PaymentPage {
+export class PaymentPage implements OnInit {
 
   clientOrder: ClientOrderDTO;
   installments: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -20,14 +20,14 @@ export class PaymentPage {
     public routeParams: ActivatedRoute,
     public formBuilder: FormBuilder
   ) {
-    //this.clientOrder = navParams.get('clientOrder');
+    this.clientOrder = JSON.parse(routeParams.snapshot.params.address);
     this.formGroup = formBuilder.group({
       installments: [1],
       "@type": ['cardPayment', Validators.required]
     });
   }
 
-  ionViewDidLoad() {
+  ngOnInit() {
     console.log(this.clientOrder);
   }
 
@@ -35,8 +35,8 @@ export class PaymentPage {
     if (this.formGroup.controls['@type'].value == 'boletoPayment')
       this.formGroup.controls['installments'].setValue(null);
 
-    //this.clientOrder.payment = this.formGroup.value;
+    this.clientOrder.payment = this.formGroup.value;
 
-    //this.navCtrl.setRoot('ClientOrderConfirmationPage', {clientOrder: this.clientOrder});
+    this.router.navigateByUrl(`client-order-confirmation/${JSON.stringify(this.clientOrder)}`);
   }
 }

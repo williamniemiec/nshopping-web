@@ -1,4 +1,4 @@
-import { CartPage } from './cart';
+import { CartPage } from './cart.page';
 import { NgModule } from '@angular/core';
 import { RouterModule, Route } from '@angular/router';
 

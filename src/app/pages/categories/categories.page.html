@@ -1,22 +1,22 @@
 <ion-header>
   <ion-toolbar>
-    <button ion-button menuToggle>
+    <ion-menu-toggle>
       <ion-icon name="menu"></ion-icon>
-    </button>
+    </ion-menu-toggle>
     <ion-title>Categories</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-fab top right edge>
-    <button navPush="CartPage" ion-fab mini>
+  <ion-fab vertical="top" horizontal="end" edge>
+    <ion-fab-button navPush="CartPage" mini>
       <ion-icon name="cart"></ion-icon>
-    </button>
+    </ion-fab-button>
   </ion-fab>
-  <button ion-item *ngFor="let item of items" (click)="showProducts(item.id)">
+  <ion-item *ngFor="let item of items" (click)="showProducts(item.id)">
     <ion-thumbnail item-start>
       <img src="{{bucketBaseUrl}}/cat{{item.id}}.jpg" />
     </ion-thumbnail>
     <h2>{{ item.name }}</h2>
-  </button>
+  </ion-item>
 </ion-content>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { API_CONFIG } from '../../config/api.config';
 import { CategoryDTO } from '../../dto/CategoryDTO';
@@ -16,7 +16,7 @@ import { CategoryService } from '../../services/domain/CategoryService';
   templateUrl: 'categories.page.html',
   styleUrls: ['./categories.page.scss']
 })
-export class CategoriesPage {
+export class CategoriesPage implements OnInit {
 
   items: CategoryDTO[];
   bucketBaseUrl: string = API_CONFIG.bucketBaseUrl;
@@ -29,7 +29,7 @@ export class CategoriesPage {
   ) {
   }
 
-  ionViewDidLoad() {
+  ngOnInit() {
     this.categoryService
       .findAll()
       .subscribe(

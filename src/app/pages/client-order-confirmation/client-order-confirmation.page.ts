@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AddressDTO } from '../../dto/AddressDTO';
 import { ClientDTO } from '../../dto/ClientDTO';
@@ -13,7 +13,7 @@ import { ClientService } from '../../services/domain/ClientService';
   templateUrl: 'client-order-confirmation.page.html',
   styleUrls: ['./client-order-confirmation.page.scss']
 })
-export class ClientOrderConfirmationPage {
+export class ClientOrderConfirmationPage implements OnInit {
 
   clientOrder: ClientOrderDTO;
   cartItems: CartItem[];
@@ -29,10 +29,10 @@ export class ClientOrderConfirmationPage {
     public cartService: CartService,
     public clientOrderService: ClientOrderService
   ) {
-    //this.clientOrder = navParams.get('clientOrder');
+    this.clientOrder = JSON.parse(routeParams.snapshot.params.order);
   }
 
-  ionViewDidLoad() {
+  ngOnInit() {
     this.cartItems = this.cartService.getCart().items;
 
     this.clientService

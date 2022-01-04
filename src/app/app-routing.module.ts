@@ -15,6 +15,34 @@ const routes: Routes = [
     path: 'signup',
     loadChildren: () => import('./pages/signup/signup.module').then( m => m.SignUpPageModule)
   },
+  {
+    path: 'categories',
+    loadChildren: () => import('./pages/categories/categories.module').then( m => m.CategoriesPageModule)
+  },
+  {
+    path: 'products/:id',
+    loadChildren: () => import('./pages/products/products.module').then( m => m.ProductsPageModule)
+  },
+  {
+    path: 'product-detail/:id',
+    loadChildren: () => import('./pages/product-detail/product-detail.module').then( m => m.ProductDetailPageModule)
+  },
+  {
+    path: 'cart',
+    loadChildren: () => import('./pages/cart/cart.module').then( m => m.CartPageModule)
+  },
+  {
+    path: 'pick-address',
+    loadChildren: () => import('./pages/pick-address/pick-address.module').then( m => m.PickAddressPageModule)
+  },
+  {
+    path: 'payment/:address',
+    loadChildren: () => import('./pages/payment/payment.module').then( m => m.PaymentPageModule)
+  },
+  {
+    path: 'client-order-confirmation/:order',
+    loadChildren: () => import('./pages/client-order-confirmation/client-order-confirmation.module').then( m => m.ClientOrderConfirmationPageModule)
+  },
 ];
 
 @NgModule({

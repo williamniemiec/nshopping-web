@@ -1,15 +1,15 @@
 <ion-header>
   <ion-toolbar>
-    <button ion-button menuToggle>
+    <ion-menu-toggle>
       <ion-icon name="menu"></ion-icon>
-    </button>
+    </ion-menu-toggle>
     <ion-title>Payment</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
   <form [formGroup]="formGroup" (ngSubmit)="nextPage(); $event.preventDefault()">
-    <ion-list radio-group formControlName="@type">
+    <ion-radio-group formControlName="@type">
       <ion-list-header>
         Payment type
       </ion-list-header>
@@ -21,7 +21,7 @@
         <ion-label>Boleto</ion-label>
         <ion-radio value="boletoPayment"></ion-radio>
       </ion-item>
-    </ion-list>
+    </ion-radio-group>
 
     <ion-item *ngIf="formGroup.value['@type'] == 'cardPayment'">
       <ion-label stacked>Installments</ion-label>
@@ -29,6 +29,6 @@
         <ion-select-option *ngFor="let i of installments; first as f" [value]="i">{{i}}</ion-select-option>
       </ion-select>
     </ion-item>
-    <button ion-button block type="submit" [disabled]="formGroup.invalid">Next</button>
+    <ion-button expand="block" type="submit" [disabled]="formGroup.invalid">Next</ion-button>
   </form>
 </ion-content>

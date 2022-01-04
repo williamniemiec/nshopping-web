@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LoadingController, NavParams } from '@ionic/angular';
 import { API_CONFIG } from '../../config/api.config';
 import { ProductDTO } from '../../dto/ProductDTO';
@@ -10,7 +10,7 @@ import { ProductService } from '../../services/domain/ProductService';
   templateUrl: 'products.page.html',
   styleUrls: ['./products.page.scss']
 })
-export class ProductsPage {
+export class ProductsPage implements OnInit {
 
   items: ProductDTO[] = [];
   page: number = 0;
@@ -41,12 +41,12 @@ export class ProductsPage {
     }, 1000);
   }
 
-  ionViewDidLoad() {
+  ngOnInit() {
     this.loadProducts();
   }
 
   async loadProducts() {
-    /*const categoryId = this.navParams.get('categoryId');
+    const categoryId = this.routeParams.snapshot.params.id;
     const loader = await this.presentLoading();
 
     this.productService
@@ -63,8 +63,9 @@ export class ProductsPage {
           loader.dismiss();
         }
       );
-      */
-     console.log('PRODUCTS PARAMS: ', this.routeParams.params);
+      
+     //console.log('PRODUCTS PARAMS: ', this.routeParams.params.subscribe((p) => console.log(p.id)));
+     //console.log(this.routeParams.snapshot.params)
   }
 
   loadImageUrls(start: number, end: number) {
@@ -91,7 +92,7 @@ export class ProductsPage {
     this.loadProducts();
 
     setTimeout(() => {
-      infiniteScroll.complete();
+      infiniteScroll.target.complete();
     }, 1000);
   }
 }

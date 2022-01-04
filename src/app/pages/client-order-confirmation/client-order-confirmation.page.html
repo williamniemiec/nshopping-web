@@ -1,8 +1,8 @@
 <ion-header>
   <ion-toolbar>
-    <button ion-button menuToggle>
+    <ion-menu-toggle>
       <ion-icon name="menu"></ion-icon>
-    </button>
+    </ion-menu-toggle>
     <ion-title *ngIf="!orderId">Order confirmation</ion-title>
     <ion-title *ngIf="orderId">Order confirmed</ion-title>
   </ion-toolbar>
@@ -69,8 +69,8 @@
       </ion-item>
     </ion-card>
 
-    <button *ngIf="!orderId" ion-button block (click)="checkout()">Checkout</button>
-    <button ion-button outline block (click)="backToCart()">Back</button>
+    <ion-button *ngIf="!orderId" expand="block" (click)="checkout()">Checkout</ion-button>
+    <ion-button fill="outline" expand="block" (click)="backToCart()">Back</ion-button>
   </div>
   <div *ngIf="orderId">
     <ion-card>
@@ -82,6 +82,6 @@
         <p>Check your email</p>
       </ion-item>
     </ion-card>
-    <button ion-button outline block (click)="backToHome()">Back</button>
+    <ion-button fill="outline" expand="block" (click)="backToHome()">Back</ion-button>
   </div>
 </ion-content>

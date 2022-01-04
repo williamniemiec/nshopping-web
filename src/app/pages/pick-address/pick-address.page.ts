@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavParams } from '@ionic/angular';
 import { AddressDTO } from '../../dto/AddressDTO';
@@ -13,7 +13,7 @@ import { StorageService } from '../../services/StorageService';
   templateUrl: 'pick-address.page.html',
   styleUrls: ['./pick-address.page.scss']
 })
-export class PickAddressPage {
+export class PickAddressPage implements OnInit {
 
   items: AddressDTO[];
   clientOrder: ClientOrderDTO;
@@ -28,7 +28,7 @@ export class PickAddressPage {
   ) {
   }
 
-  ionViewDidLoad() {
+  ngOnInit() {
     let localUser = this.storageService.getLocalUser();
 
     if (localUser && localUser.email) {
@@ -65,6 +65,6 @@ export class PickAddressPage {
 
   handleAddressSelection(address: AddressDTO) {
     this.clientOrder.deliveryAddress = {id: address.id}
-    this.router.navigateByUrl(`payment/${this.clientOrder}`);
+    this.router.navigateByUrl(`payment/${JSON.stringify(this.clientOrder)}`);
   }
 }
