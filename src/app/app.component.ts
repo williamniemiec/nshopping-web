@@ -4,7 +4,7 @@ import { StatusBar } from "@ionic-native/status-bar/ngx";
 import { SplashScreen } from "@ionic-native/splash-screen/ngx";
 import { Router } from '@angular/router';
 import { AuthService } from './services/AuthService';
-import RoutePage from './route-page';
+import RoutePage from './models/route-page';
 
 
 /**

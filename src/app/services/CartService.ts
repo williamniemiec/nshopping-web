@@ -4,7 +4,7 @@ import { API_CONFIG } from "../config/api.config";
 import { CredentialsDTO } from "../dto/credentials.dto";
 import { LocalUserDTO } from "../dto/local-user.dto";
 import { ProductDTO } from "../dto/product.dto";
-import { Cart } from "../models/Cart";
+import { Cart } from "../models/cart";
 import { StorageService } from "./StorageService";
 
 @Injectable(

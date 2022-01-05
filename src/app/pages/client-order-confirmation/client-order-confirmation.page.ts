@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AddressDTO } from '../../dto/address.dto';
 import { ClientDTO } from '../../dto/client.dto';
 import { ClientOrderDTO } from '../../dto/client-order.dto';
-import { CartItem } from '../../models/CartItem';
+import { CartItem } from '../../models/cart-item';
 import { CartService } from '../../services/CartService';
 import { ClientOrderService } from '../../services/domain/ClientOrderService';
 import { ClientService } from '../../services/domain/ClientService';

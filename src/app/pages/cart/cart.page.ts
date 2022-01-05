@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { API_CONFIG } from '../../config/api.config';
 import { ProductDTO } from '../../dto/product.dto';
-import { CartItem } from '../../models/CartItem';
+import { CartItem } from '../../models/cart-item';
 import { CartService } from '../../services/CartService';
 import { ProductService } from '../../services/domain/ProductService';
 

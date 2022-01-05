@@ -1,9 +1,16 @@
 import { STORAGE_KEYS } from "../config/storageKeys.config";
 import { LocalUserDTO } from "../dto/local-user.dto";
-import { Cart } from "../models/Cart";
+import { Cart } from "../models/cart";
 
+
+/**
+ * Responsible for handling local storage.
+ */
 export class StorageService {
 
+  //---------------------------------------------------------------------------
+  //		Methods
+  //---------------------------------------------------------------------------
   getLocalUser(): LocalUserDTO {
     let user = localStorage.getItem(STORAGE_KEYS.localUser);
 
@@ -14,7 +21,7 @@ export class StorageService {
     return JSON.parse(user);
   }
 
-  setLocalUser(user: LocalUserDTO) {
+  setLocalUser(user: LocalUserDTO): void {
     if (user == null)
       localStorage.removeItem(STORAGE_KEYS.localUser);
     else
