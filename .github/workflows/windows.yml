@@ -18,9 +18,9 @@ jobs:
         node-version: 16.x
         cache: 'npm'
     - name: Setup Cordova
-      run: sudo npm install -g cordova
+      run: npm install -g cordova
     - name: Setup Ionic
-      run: sudo npm install -g @ionic/cli
+      run: npm install -g @ionic/cli
     - name: Install dependencies
       run: npm install
     - name: Build with Ionic
