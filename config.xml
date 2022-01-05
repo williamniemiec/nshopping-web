@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="wniemiec.app.nshopping" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>nshopping-web</name>
-    <description>Shopping system</description>
+    <description>Website about a shopping system built with Ionic Framework along with Angular.</description>
     <author email="williamniemiec@hotmail.com" href="https://github.com/williamniemiec">William Niemiec</author>
     <content src="index.html" />
     <access origin="*" />
