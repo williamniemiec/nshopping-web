@@ -87,10 +87,7 @@ export class ProductsPage implements OnInit {
   }
 
   private loadImageUrls(): void {
-    const start = this.items.length;
-    const end = this.items.length - 1;
-
-    for (let i = start; i < end; i++) {
+    for (let i = 0; i < this.items.length; i++) {
       let item = this.items[i];
 
       this.productService
@@ -102,6 +99,7 @@ export class ProductsPage implements OnInit {
           (_) => {}
         );
     }
+
   }
 
   private generateImageUrlForProduct(product: ProductDTO): string {

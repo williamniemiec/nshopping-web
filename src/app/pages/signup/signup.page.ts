@@ -52,8 +52,8 @@ export class SignUpPage implements OnInit {
       phone1 : ['', [Validators.required]],
       phone2 : ['', []],
       phone3 : ['', []],
-      stateId : [null, [Validators.required]],
-      cityId : [null, [Validators.required]]      
+      stateId : ['', [Validators.required]],
+      cityId : ['', [Validators.required]]      
     });
   }
 
