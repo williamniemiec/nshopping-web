@@ -5,9 +5,9 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 import { NavParams } from '@ionic/angular';
 import { API_CONFIG } from '../../config/api.config';
 import { ClientDTO } from '../../dto/client.dto';
-import { ClientService } from '../../services/domain/ClientService';
-import { ImageService } from '../../services/ImageService';
-import { StorageService } from '../../services/StorageService';
+import { ClientService } from '../../services/domain/client.service';
+import { ImageService } from '../../services/image.service';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'page-profile',

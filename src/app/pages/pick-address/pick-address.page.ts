@@ -4,9 +4,9 @@ import { NavParams } from '@ionic/angular';
 import { AddressDTO } from '../../dto/address.dto';
 import { ClientOrderDTO } from '../../dto/client-order.dto';
 import { ClientOrderItemDTO } from '../../dto/client-order-item.dto';
-import { CartService } from '../../services/CartService';
-import { ClientService } from '../../services/domain/ClientService';
-import { StorageService } from '../../services/StorageService';
+import { CartService } from '../../services/cart.service';
+import { ClientService } from '../../services/domain/client.service';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'page-pick-address',

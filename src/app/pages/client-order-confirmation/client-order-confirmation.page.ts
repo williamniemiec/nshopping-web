@@ -4,9 +4,9 @@ import { AddressDTO } from '../../dto/address.dto';
 import { ClientDTO } from '../../dto/client.dto';
 import { ClientOrderDTO } from '../../dto/client-order.dto';
 import { CartItem } from '../../models/cart-item';
-import { CartService } from '../../services/CartService';
-import { ClientOrderService } from '../../services/domain/ClientOrderService';
-import { ClientService } from '../../services/domain/ClientService';
+import { CartService } from '../../services/cart.service';
+import { ClientOrderService } from '../../services/domain/client-order.service';
+import { ClientService } from '../../services/domain/client.service';
 
 @Component({
   selector: 'page-client-order-confirmation',

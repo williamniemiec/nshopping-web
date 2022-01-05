@@ -7,7 +7,7 @@ import {
   HTTP_INTERCEPTORS 
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { StorageService } from '../services/StorageService';
+import { StorageService } from '../services/storage.service';
 import { API_CONFIG } from '../config/api.config';
 
 

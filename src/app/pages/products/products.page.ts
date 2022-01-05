@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoadingController, NavParams } from '@ionic/angular';
 import { API_CONFIG } from '../../config/api.config';
 import { ProductDTO } from '../../dto/product.dto';
-import { ProductService } from '../../services/domain/ProductService';
+import { ProductService } from '../../services/domain/product.service';
 
 @Component({
   selector: 'page-products',

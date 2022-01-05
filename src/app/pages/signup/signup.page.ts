@@ -4,9 +4,9 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { CityDTO } from '../../dto/city.dto';
 import { StateDTO } from '../../dto/state.dto';
-import { CityService } from '../../services/domain/CityService';
-import { ClientService } from '../../services/domain/ClientService';
-import { StateService } from '../../services/domain/StateService';
+import { CityService } from '../../services/domain/city.service';
+import { ClientService } from '../../services/domain/client.service';
+import { StateService } from '../../services/domain/state.service';
 
 @Component({
   selector: 'app-signup',

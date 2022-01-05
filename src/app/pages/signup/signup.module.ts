@@ -1,8 +1,8 @@
 import { SignUpPageRoutingModule } from './signup-routing.module';
 import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
-import { CityService } from '../../services/domain/CityService';
-import { StateService } from '../../services/domain/StateService';
+import { CityService } from '../../services/domain/city.service';
+import { StateService } from '../../services/domain/state.service';
 import { SignUpPage } from './signup.page';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';

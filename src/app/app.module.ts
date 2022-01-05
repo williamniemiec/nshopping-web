@@ -10,13 +10,13 @@ import { AppComponent } from './app.component';
 import { AuthInterceptorProvider } from './interceptors/auth.interceptor';
 import { HttpErrorInterceptorProvider } from './interceptors/http-error.interceptor';
 import { ErrorInterceptorProvider } from './interceptors/error.interceptor';
-import { CategoryService } from './services/domain/CategoryService';
-import { AuthService } from './services/AuthService';
-import { StorageService } from './services/StorageService';
-import { ClientService } from './services/domain/ClientService';
-import { ProductService } from './services/domain/ProductService';
-import { CartService } from './services/CartService';
-import { ImageService } from './services/ImageService';
+import { CategoryService } from './services/domain/category.service';
+import { AuthService } from './services/auth.service';
+import { StorageService } from './services/storage.service';
+import { ClientService } from './services/domain/client.service';
+import { ProductService } from './services/domain/product.service';
+import { CartService } from './services/cart.service';
+import { ImageService } from './services/image.service';
 
 
 /**

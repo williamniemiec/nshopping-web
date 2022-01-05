@@ -11,7 +11,7 @@ export class StorageService {
   //---------------------------------------------------------------------------
   //		Methods
   //---------------------------------------------------------------------------
-  getLocalUser(): LocalUserDTO {
+  public getLocalUser(): LocalUserDTO {
     let user = localStorage.getItem(STORAGE_KEYS.localUser);
 
     if (user == null) {
@@ -21,14 +21,16 @@ export class StorageService {
     return JSON.parse(user);
   }
 
-  setLocalUser(user: LocalUserDTO): void {
-    if (user == null)
+  public setLocalUser(user: LocalUserDTO): void {
+    if (user == null) {
       localStorage.removeItem(STORAGE_KEYS.localUser);
-    else
+    }
+    else {
       localStorage.setItem(STORAGE_KEYS.localUser, JSON.stringify(user));
+    }
   }
 
-  getCart(): Cart {
+  public getCart(): Cart {
     let cart = localStorage.getItem(STORAGE_KEYS.cart);
 
     if (cart == null) {
@@ -38,10 +40,12 @@ export class StorageService {
     return JSON.parse(cart);
   }
 
-  setCart(cart: Cart) {
-    if (cart == null)
+  public setCart(cart: Cart) {
+    if (cart == null) {
       localStorage.removeItem(STORAGE_KEYS.cart);
-    else
+    }
+    else {
       localStorage.setItem(STORAGE_KEYS.cart, JSON.stringify(cart));
+    }
   }
 }

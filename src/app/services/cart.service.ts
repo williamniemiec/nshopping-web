@@ -1,22 +1,30 @@
-import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { API_CONFIG } from "../config/api.config";
-import { CredentialsDTO } from "../dto/credentials.dto";
-import { LocalUserDTO } from "../dto/local-user.dto";
 import { ProductDTO } from "../dto/product.dto";
 import { Cart } from "../models/cart";
-import { StorageService } from "./StorageService";
+import { StorageService } from "./storage.service";
 
+
+/**
+ * Responsible for providing cart services.
+ */
 @Injectable(
   { providedIn: 'root' }
 )
 export class CartService {
 
-  constructor(public storageService: StorageService) {
-
+  //---------------------------------------------------------------------------
+  //		Constructor
+  //---------------------------------------------------------------------------
+  constructor(
+    public storageService: StorageService
+  ) {
   }
 
-  createOrClearCart(): Cart {
+
+  //---------------------------------------------------------------------------
+  //		Methods
+  //---------------------------------------------------------------------------
+  public createOrClearCart(): Cart {
     const cart: Cart = {
       items: []
     }
@@ -26,7 +34,7 @@ export class CartService {
     return cart;
   }
 
-  getCart(): Cart {
+  public getCart(): Cart {
     let cart  = this.storageService.getCart();
 
     if (cart == null)
@@ -35,7 +43,7 @@ export class CartService {
     return cart;
   }
 
-  addProduct(product: ProductDTO): Cart {
+  public addProduct(product: ProductDTO): Cart {
     let cart = this.getCart();
     let position = cart.items.findIndex(item => item.product.id == product.id);
 
@@ -48,7 +56,7 @@ export class CartService {
     return cart;
   }
 
-  removeProduct(product: ProductDTO): Cart {
+  public removeProduct(product: ProductDTO): Cart {
     let cart = this.getCart();
     let position = cart.items.findIndex(item => item.product.id == product.id);
 
@@ -61,7 +69,7 @@ export class CartService {
     return cart;
   }
 
-  increaseQuantity(product: ProductDTO): Cart {
+  public increaseQuantity(product: ProductDTO): Cart {
     let cart = this.getCart();
     let position = cart.items.findIndex(item => item.product.id == product.id);
 
@@ -74,7 +82,7 @@ export class CartService {
     return cart;
   }
 
-  decreaseQuantity(product: ProductDTO): Cart {
+  public decreaseQuantity(product: ProductDTO): Cart {
     let cart = this.getCart();
     let position = cart.items.findIndex(item => item.product.id == product.id);
 
@@ -90,7 +98,7 @@ export class CartService {
     return cart;
   }
 
-  getTotal(): number {
+  public getTotal(): number {
     let cart = this.getCart();
     let sum = 0;
 

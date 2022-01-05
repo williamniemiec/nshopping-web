@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 import { CredentialsDTO } from '../../dto/credentials.dto';
-import { AuthService } from '../../services/AuthService';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-home',

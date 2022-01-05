@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { API_CONFIG } from '../../config/api.config';
 import { CategoryDTO } from '../../dto/category.dto';
-import { CategoryService } from '../../services/domain/CategoryService';
+import { CategoryService } from '../../services/domain/category.service';
 
 /**
  * Generated class for the CategoriesPage page.
