@@ -16,13 +16,18 @@
       <ion-icon name="cart"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-  <ion-card>
-    <img [src]="item?.imageUrl || 'assets/images/prod.jpg'" />
-    <ion-card-content>
-      <ion-card-title>{{item?.name}}</ion-card-title>
-      <p>{{item?.price | currency}}</p>
-    </ion-card-content>
-  </ion-card>
 
-  <ion-button expand="block" fill="outline" (click)="addToCart(item)">Add to cart</ion-button>
+  <div class="product-info">
+    <ion-card class="product-cart">
+      <div class="product-img-area">
+        <img [src]="item?.imageUrl || 'assets/images/prod.jpg'" class="product-img" />
+      </div>
+      <ion-card-content>
+        <ion-card-title>{{item?.name}}</ion-card-title>
+        <p>{{item?.price | currency}}</p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-button expand="block" fill="outline" (click)="addToCart(item)">Add to cart</ion-button>
+  </div>
 </ion-content>

@@ -11,14 +11,20 @@
 </ion-header>
 
 <ion-content padding>
+  <div class="container">
+    <div class="container-area">
   <ion-list>
     <ion-list-header>
       Select an address
     </ion-list-header>
-    <ion-item *ngFor="let item of items" (click)="handleAddressSelection(item)">
-      <h2>{{item.streetName}}, {{item.number}}</h2>
-      <p>{{item.apt}} {{item.district}} {{item.zip}}</p>
-      <p>{{item.city.name}}, {{item.city.state.name}}</p>
+    <ion-item button *ngFor="let item of items" (click)="handleAddressSelection(item)">
+      <div class="address-item">
+        <p class="address-name">{{item.streetName}}, {{item.number}}</p>
+        <p class="address-number">{{item.apt}} {{item.district}} {{item.zip}}</p>
+        <p class="address-location">{{item.city.name}}, {{item.city.state.name}}</p>
+      </div>
     </ion-item>
   </ion-list>
+  </div>
+  </div>
 </ion-content>

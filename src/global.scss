@@ -43,6 +43,12 @@ ion-item {
     padding: 50px;
 }
 
+.safe-area {
+    max-width: 800px;
+    margin: auto;
+    padding-top: 50px;
+}
+
 .container-area {
     max-width: 800px;
     margin: auto;
@@ -61,3 +67,44 @@ ion-item {
 .logo-img {
     width: 200px;
 }
+
+.card {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.card-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.card-item-left {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.card-item-right {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    justify-content: flex-end;
+}
+
+.card-item-name {
+    margin-left: 20px;
+}
+
+
+
+.card-item-key {
+    font-size: 24px;
+}
+
+.card-item-value {
+    font-size: 15px;
+    margin-left: 20px;
+}
+

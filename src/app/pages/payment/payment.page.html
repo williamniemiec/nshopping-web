@@ -10,28 +10,32 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <form [formGroup]="formGroup" (ngSubmit)="nextPage(); $event.preventDefault()">
-    <ion-radio-group formControlName="@type">
-      <ion-list-header>
-        Payment type
-      </ion-list-header>
-      <ion-item>
-        <ion-label>Card</ion-label>
-        <ion-radio checked="true" value="cardPayment"></ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-label>Boleto</ion-label>
-        <ion-radio value="boletoPayment"></ion-radio>
-      </ion-item>
-    </ion-radio-group>
+<ion-content>
+  <div class="container">
+    <div class="container-area">
+      <form [formGroup]="formGroup" (ngSubmit)="nextPage(); $event.preventDefault()">
+        <ion-radio-group formControlName="@type">
+          <ion-list-header>
+            Payment type
+          </ion-list-header>
+          <ion-item>
+            <ion-label>Card</ion-label>
+            <ion-radio checked="true" value="cardPayment"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Boleto</ion-label>
+            <ion-radio value="boletoPayment"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
 
-    <ion-item *ngIf="formGroup.value['@type'] == 'cardPayment'">
-      <ion-label stacked>Installments</ion-label>
-      <ion-select formControlName="installments">
-        <ion-select-option *ngFor="let i of installments; first as f" [value]="i">{{i}}</ion-select-option>
-      </ion-select>
-    </ion-item>
-    <ion-button expand="block" type="submit" [disabled]="formGroup.invalid">Next</ion-button>
-  </form>
+        <ion-item *ngIf="formGroup.value['@type'] == 'cardPayment'">
+          <ion-label stacked>Installments</ion-label>
+          <ion-select formControlName="installments">
+            <ion-select-option *ngFor="let i of installments; first as f" [value]="i">{{i}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-button expand="block" type="submit" [disabled]="formGroup.invalid">Next</ion-button>
+      </form>
+    </div>
+  </div>
 </ion-content>

@@ -9,16 +9,17 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
   <ion-fab vertical="top" horizontal="end" slot="fixed" edge>
     <ion-fab-button (click)="redirectToCartPage()" mini>
       <ion-icon name="cart"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-  <ion-item *ngFor="let item of items" (click)="showProducts(item.id)">
+  
+  <ion-item *ngFor="let item of items" button (click)="showProducts(item.id)">
     <ion-thumbnail item-start>
       <img src="{{bucketBaseUrl}}/cat{{item.id}}.jpg" />
     </ion-thumbnail>
-    <h2>{{ item.name }}</h2>
+    <h2 class="category-name">{{ item.name }}</h2>
   </ion-item>
 </ion-content>

@@ -1,3 +1,20 @@
-page-products {
+.product {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    flex: 1;
+}
 
+.product-left {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.product-right {
+    display: flex;
+}
+
+.product-name {
+    margin-left: 20px;
 }

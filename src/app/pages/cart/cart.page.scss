@@ -1,9 +1,31 @@
 
   .cart-amount {
     display: flex;
+    margin: 0 20px;
 
     p {
       margin: 0 10px;
     }
   }
 
+.cart-item {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.cart-item-left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.cart-item-name {
+  margin: 0 20px;
+}
+
+.cart-item-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}

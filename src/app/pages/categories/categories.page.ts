@@ -38,7 +38,7 @@ export class CategoriesPage implements OnInit {
       );
   }
 
-  showProducts(categoryId: string) {
+  showProducts(categoryId) {
     this.router.navigateByUrl('products/' + categoryId);
   }
 
