@@ -12,7 +12,7 @@
 	<a href="https://github.com/williamniemiec/nshopping-web/blob/master/LICENSE"><img src="https://img.shields.io/github/license/williamniemiec/nshopping-web" alt="License"></a>
 </p>
 <p align="center">
-	<a href='https://wniemiec-web-nshopping.herokuapp.com/)'><img alt='Deploy' src='https://www.herokucdn.com/deploy/button.svg' width=200/></a>
+	<a href='https://wniemiec-web-nshopping.herokuapp.com/'><img alt='Deploy' src='https://www.herokucdn.com/deploy/button.svg' width=200/></a>
 </p>
 
 <hr />
