@@ -2,6 +2,7 @@
  * Responsible for representing a new client.
  */
 export interface ClientNewDTO {
+  
   name: string;
   email: string;
   password: string;

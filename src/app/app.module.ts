@@ -1,15 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { ErrorHandler, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AuthInterceptorProvider } from './interceptors/AuthInterceptor';
-import { HttpErrorInterceptorProvider } from './interceptors/HttpErrorInterceptor';
-import { ErrorInterceptor } from './interceptors/ErrorInterceptor';
+import { AuthInterceptorProvider } from './interceptors/auth.interceptor';
+import { HttpErrorInterceptorProvider } from './interceptors/http-error.interceptor';
+import { ErrorInterceptorProvider } from './interceptors/error.interceptor';
 import { CategoryService } from './services/domain/CategoryService';
 import { AuthService } from './services/AuthService';
 import { StorageService } from './services/StorageService';
@@ -36,11 +36,11 @@ import { ImageService } from './services/ImageService';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: ErrorInterceptor},
     {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
     CategoryService,
     AuthInterceptorProvider,
     HttpErrorInterceptorProvider,
+    ErrorInterceptorProvider,
     AuthService,
     StorageService,
     ClientService,

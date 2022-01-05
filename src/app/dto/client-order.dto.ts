@@ -7,6 +7,7 @@ import { RefDTO } from "./ref.dto";
  * Responsible for representing a client order.
  */
 export interface ClientOrderDTO {
+  
   client: RefDTO;
   deliveryAddress: RefDTO;
   payment: PaymentDTO;
