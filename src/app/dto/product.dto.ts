@@ -1,3 +1,6 @@
+/**
+ * Responsible for representing a product.
+ */
 export interface ProductDTO {
   id: string;
   name: string;

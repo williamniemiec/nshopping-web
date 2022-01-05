@@ -1,9 +1,9 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { API_CONFIG } from "../config/api.config";
-import { CredentialsDTO } from "../dto/CredentialsDTO";
-import { LocalUserDTO } from "../dto/LocalUserDTO";
-import { ProductDTO } from "../dto/ProductDTO";
+import { CredentialsDTO } from "../dto/credentials.dto";
+import { LocalUserDTO } from "../dto/local-user.dto";
+import { ProductDTO } from "../dto/product.dto";
 import { Cart } from "../models/Cart";
 import { StorageService } from "./StorageService";
 

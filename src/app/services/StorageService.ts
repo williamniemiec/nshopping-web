@@ -1,5 +1,5 @@
-import { STORAGE_KEYS } from "../config/storageKeys";
-import { LocalUserDTO } from "../dto/LocalUserDTO";
+import { STORAGE_KEYS } from "../config/storageKeys.config";
+import { LocalUserDTO } from "../dto/local-user.dto";
 import { Cart } from "../models/Cart";
 
 export class StorageService {

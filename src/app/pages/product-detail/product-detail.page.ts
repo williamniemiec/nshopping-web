@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NavParams } from '@ionic/angular';
 import { API_CONFIG } from '../../config/api.config';
-import { ProductDTO } from '../../dto/ProductDTO';
+import { ProductDTO } from '../../dto/product.dto';
 import { CartService } from '../../services/CartService';
 import { ProductService } from '../../services/domain/ProductService';
 

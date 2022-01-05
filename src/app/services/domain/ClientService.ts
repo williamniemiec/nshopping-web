@@ -2,8 +2,8 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { API_CONFIG } from "../../config/api.config";
-import { ClientDTO } from "../../dto/ClientDTO";
-import { ClientNewDTO } from "../../dto/ClientNewDTO";
+import { ClientDTO } from "../../dto/client.dto";
+import { ClientNewDTO } from "../../dto/client-new.dto";
 import { ImageService } from "../ImageService";
 import { StorageService } from "../StorageService";
 

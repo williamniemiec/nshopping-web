@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavParams } from '@ionic/angular';
-import { AddressDTO } from '../../dto/AddressDTO';
-import { ClientOrderDTO } from '../../dto/ClientOrderDTO';
-import { ClientOrderItemDTO } from '../../dto/ClientOrderItemDTO';
+import { AddressDTO } from '../../dto/address.dto';
+import { ClientOrderDTO } from '../../dto/client-order.dto';
+import { ClientOrderItemDTO } from '../../dto/client-order-item.dto';
 import { CartService } from '../../services/CartService';
 import { ClientService } from '../../services/domain/ClientService';
 import { StorageService } from '../../services/StorageService';

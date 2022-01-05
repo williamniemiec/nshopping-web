@@ -16,7 +16,7 @@
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
-@import '~@ionic/angular/css/display.css';
+@import "~@ionic/angular/css/display.css";
 
 /* Optional CSS utils that can be commented out */
 @import "~@ionic/angular/css/padding.css";
@@ -28,83 +28,74 @@
 @import "./theme/variables.scss";
 
 ion-item {
-    --highlight-color-invalid: var(--ion-color-danger); // invalid underline color
-    --highlight-color-valid: var(--ion-color-primary); // valid underline color
+  --highlight-color-invalid: var(--ion-color-danger); // invalid underline color
+  --highlight-color-valid: var(--ion-color-primary); // valid underline color
 }
 
 .container {
-    min-height: 100vh;
-    width: 100vw;
-    background-image: url('/assets/images/background.jpg');
-    background-position: center;
-    background-repeat: repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    padding: 50px;
-}
-
-.safe-area {
-    max-width: 800px;
-    margin: auto;
-    padding-top: 50px;
+  min-height: 100vh;
+  width: 100vw;
+  background-image: url("/assets/images/background.jpg");
+  background-position: center;
+  background-repeat: repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  padding: 50px;
 }
 
 .container-area {
-    max-width: 800px;
-    margin: auto;
-    border-radius: 10px;
-    padding: 10px;
-    border: 1px solid #333;
-    background-color: rgba(#aaa, 0.7);
+  max-width: 800px;
+  margin: auto;
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid #333;
+  background-color: rgba(#aaa, 0.7);
 }
 
 .logo-area {
-    display: flex;
-    justify-content: center;
-    padding: 10px;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
 }
 
 .logo-img {
-    width: 200px;
+  width: 200px;
 }
 
 .card {
-    margin-left: 0;
-    margin-right: 0;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .card-item {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .card-item-left {
-    display: flex;
-    align-items: center;
-    flex: 1;
+  display: flex;
+  align-items: center;
+  flex: 1;
 }
 
 .card-item-right {
-    display: flex;
-    align-items: center;
-    flex: 1;
-    justify-content: flex-end;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  justify-content: flex-end;
 }
 
 .card-item-name {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
-
-
 .card-item-key {
-    font-size: 24px;
+  font-size: 24px;
 }
 
 .card-item-value {
-    font-size: 15px;
-    margin-left: 20px;
+  font-size: 15px;
+  margin-left: 20px;
 }
-

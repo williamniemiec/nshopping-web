@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
-import { CredentialsDTO } from '../../dto/CredentialsDTO';
+import { CredentialsDTO } from '../../dto/credentials.dto';
 import { AuthService } from '../../services/AuthService';
 
 @Component({

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AddressDTO } from '../../dto/AddressDTO';
-import { ClientDTO } from '../../dto/ClientDTO';
-import { ClientOrderDTO } from '../../dto/ClientOrderDTO';
+import { AddressDTO } from '../../dto/address.dto';
+import { ClientDTO } from '../../dto/client.dto';
+import { ClientOrderDTO } from '../../dto/client-order.dto';
 import { CartItem } from '../../models/CartItem';
 import { CartService } from '../../services/CartService';
 import { ClientOrderService } from '../../services/domain/ClientOrderService';

@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { API_CONFIG } from "../../config/api.config";
-import { ClientOrderDTO } from "../../dto/ClientOrderDTO";
+import { ClientOrderDTO } from "../../dto/client-order.dto";
 
 @Injectable(
   { providedIn: 'root' }

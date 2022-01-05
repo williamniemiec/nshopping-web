@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { API_CONFIG } from "../../config/api.config";
-import { CityDTO } from "../../dto/CityDTO";
+import { CityDTO } from "../../dto/city.dto";
 
 @Injectable(
   { providedIn: 'root' }

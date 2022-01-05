@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { NavParams } from '@ionic/angular';
 import { API_CONFIG } from '../../config/api.config';
-import { ClientDTO } from '../../dto/ClientDTO';
+import { ClientDTO } from '../../dto/client.dto';
 import { ClientService } from '../../services/domain/ClientService';
 import { ImageService } from '../../services/ImageService';
 import { StorageService } from '../../services/StorageService';

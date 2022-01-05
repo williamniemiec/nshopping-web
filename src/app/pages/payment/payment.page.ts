@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ClientOrderDTO } from '../../dto/ClientOrderDTO';
+import { ClientOrderDTO } from '../../dto/client-order.dto';
 
 @Component({
   selector: 'page-payment',
