@@ -6,6 +6,9 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 
 
+/**
+ * Responsible for managing home page context.
+ */
 @NgModule({
   declarations: [HomePage],
   imports: [

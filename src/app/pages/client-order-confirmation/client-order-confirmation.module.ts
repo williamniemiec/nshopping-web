@@ -6,6 +6,9 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 
 
+/**
+ * Responsible for managing client order confirmation page context.
+ */
 @NgModule({
   declarations: [
     ClientOrderConfirmationPage,

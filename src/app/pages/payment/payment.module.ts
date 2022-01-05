@@ -6,6 +6,9 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
+/**
+ * Responsible for managing payment page context.
+ */
 @NgModule({
   declarations: [
     PaymentPage,

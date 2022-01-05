@@ -8,6 +8,10 @@ import { CartService } from '../../services/cart.service';
 import { ClientOrderService } from '../../services/domain/client-order.service';
 import { ClientService } from '../../services/domain/client.service';
 
+
+/**
+ * Responsible for handling client order confirmation page.
+ */
 @Component({
   selector: 'page-client-order-confirmation',
   templateUrl: 'client-order-confirmation.page.html',
@@ -15,15 +19,21 @@ import { ClientService } from '../../services/domain/client.service';
 })
 export class ClientOrderConfirmationPage implements OnInit {
 
+  //---------------------------------------------------------------------------
+  //		Attributes
+  //---------------------------------------------------------------------------
   clientOrder: ClientOrderDTO;
   cartItems: CartItem[];
   client: ClientDTO;
   address: AddressDTO;
   orderId: string;
 
+
+  //---------------------------------------------------------------------------
+  //		Constructor
+  //---------------------------------------------------------------------------
   constructor(
     public router: Router, 
-    //public navParams: NavParams,
     public routeParams: ActivatedRoute,
     public clientService: ClientService,
     public cartService: CartService,
@@ -32,7 +42,11 @@ export class ClientOrderConfirmationPage implements OnInit {
     this.clientOrder = JSON.parse(routeParams.snapshot.params.order);
   }
 
-  ngOnInit() {
+
+  //---------------------------------------------------------------------------
+  //		Methods
+  //---------------------------------------------------------------------------
+  public ngOnInit(): void {
     this.cartItems = this.cartService.getCart().items;
 
     this.clientService
@@ -40,9 +54,12 @@ export class ClientOrderConfirmationPage implements OnInit {
       .subscribe(
         (response) => {
           this.client = response as ClientDTO;
-          this.address = this.findAddressById(this.clientOrder.deliveryAddress.id, response['addresses']);
+          this.address = this.findAddressById(
+            this.clientOrder.deliveryAddress.id, 
+            response['addresses']
+          );
         },
-        (error) => {
+        (_) => {
           this.router.navigateByUrl('home');
         }
       );
@@ -54,19 +71,19 @@ export class ClientOrderConfirmationPage implements OnInit {
     return list[position];
   }
 
-  total() {
+  public total(): number {
     return this.cartService.getTotal();
   }
 
-  backToCart() {
+  public backToCart(): void {
     this.router.navigateByUrl('cart');
   }
 
-  backToHome() {
+  public backToHome(): void {
     this.router.navigateByUrl('home');
   }
 
-  checkout() {
+  public checkout(): void {
     this.clientOrderService
       .insert(this.clientOrder)
       .subscribe(
@@ -75,10 +92,12 @@ export class ClientOrderConfirmationPage implements OnInit {
           this.orderId = this.extractIdFrom(response.headers.get('location'));
         },
         (error) => {
-          if (error.status == 403)
+          if (error.status == 403) {
             this.router.navigateByUrl('home');
-          else
+          }
+          else {
             console.error(error);
+          }
         }
       );
   }

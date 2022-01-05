@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NavParams } from '@ionic/angular';
 import { AddressDTO } from '../../dto/address.dto';
 import { ClientOrderDTO } from '../../dto/client-order.dto';
 import { ClientOrderItemDTO } from '../../dto/client-order-item.dto';
@@ -8,6 +7,10 @@ import { CartService } from '../../services/cart.service';
 import { ClientService } from '../../services/domain/client.service';
 import { StorageService } from '../../services/storage.service';
 
+
+/**
+ * Responsible for representing pick address page.
+ */
 @Component({
   selector: 'page-pick-address',
   templateUrl: 'pick-address.page.html',
@@ -15,12 +18,18 @@ import { StorageService } from '../../services/storage.service';
 })
 export class PickAddressPage implements OnInit {
 
+  //---------------------------------------------------------------------------
+  //		Attributes
+  //---------------------------------------------------------------------------
   items: AddressDTO[];
   clientOrder: ClientOrderDTO;
 
+
+  //---------------------------------------------------------------------------
+  //		Constructor
+  //---------------------------------------------------------------------------
   constructor(
     public router: Router, 
-    //public navParams: NavParams,
     public routeParams: ActivatedRoute,
     public storageService: StorageService,
     public clientService: ClientService,
@@ -28,32 +37,21 @@ export class PickAddressPage implements OnInit {
   ) {
   }
 
-  ngOnInit() {
+
+  //---------------------------------------------------------------------------
+  //		Methods
+  //---------------------------------------------------------------------------
+  public ngOnInit(): void {
     let localUser = this.storageService.getLocalUser();
 
-    if (localUser && localUser.email) {
+    if (this.isAuthenticated()) {
       this.clientService
         .findByEmail(localUser.email)
         .subscribe(
-          (response) => {
-            this.items = response['addresses'];
-
-            const cart = this.cartService.getCart();
-            const clientOrderList = cart.items.map(item => (
-              {
-                amount: item.amount, 
-                product: {id: item.product.id}
-              }
-            ));
-
-            this.clientOrder = {
-              client: {id: response['id']},
-              deliveryAddress: null,
-              payment: null,
-              products: clientOrderList as ClientOrderItemDTO[]
-            }
+          (client) => {
+            this.parseAuthenticatedClient(client)
           },
-          (error) => {
+          (_) => {
             this.router.navigateByUrl('home');
           }
       );
@@ -63,8 +61,38 @@ export class PickAddressPage implements OnInit {
     }
   }
 
-  handleAddressSelection(address: AddressDTO) {
-    this.clientOrder.deliveryAddress = {id: address.id}
+  private isAuthenticated(): boolean {
+    const localUser = this.storageService.getLocalUser();
+
+    return  (localUser != null)
+            && (localUser != undefined)
+            && (localUser.email != null)
+            && (localUser.email != undefined);
+  }
+
+  private parseAuthenticatedClient(client): void {
+    this.clientOrder = {
+      client: { id: client['id'] },
+      deliveryAddress: null,
+      payment: null,
+      products: this.parseClientCart()
+    }
+    this.items = client['addresses'];
+  }
+
+  private parseClientCart(): ClientOrderItemDTO[] {
+    const cart = this.cartService.getCart();
+    
+    return cart.items.map(item => (
+      {
+        amount: item.amount, 
+        product: {id: item.product.id}
+      }
+    )) as ClientOrderItemDTO[];
+  }
+
+  public handleAddressSelection(address: AddressDTO): void {
+    this.clientOrder.deliveryAddress = {id: address.id};
     this.router.navigateByUrl(`payment/${JSON.stringify(this.clientOrder)}`);
   }
 }

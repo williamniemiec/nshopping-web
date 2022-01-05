@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { NavParams } from '@ionic/angular';
 import { API_CONFIG } from '../../config/api.config';
 import { ProductDTO } from '../../dto/product.dto';
 import { CartService } from '../../services/cart.service';
 import { ProductService } from '../../services/domain/product.service';
 
+
+/**
+ * Responsible for representing product detail page.
+ */
 @Component({
   selector: 'page-product-detail',
   templateUrl: 'product-detail.page.html',
@@ -13,49 +16,62 @@ import { ProductService } from '../../services/domain/product.service';
 })
 export class ProductDetailPage implements OnInit {
 
+  //---------------------------------------------------------------------------
+  //		Attributes
+  //---------------------------------------------------------------------------
   item: ProductDTO;
 
+
+  //---------------------------------------------------------------------------
+  //		Constructor
+  //---------------------------------------------------------------------------
   constructor(
     public router: Router, 
-    //public navParams: NavParams,
     public routeParams: ActivatedRoute,
     public productService: ProductService,
     public cartService: CartService
   ) {
   }
 
-  ngOnInit() {
+
+  //---------------------------------------------------------------------------
+  //		Methods
+  //---------------------------------------------------------------------------
+  public ngOnInit(): void {
     const productId = this.routeParams.snapshot.params.id;
 
     this.productService
       .findById(productId)
       .subscribe(
-        (response) => {
-          this.item = response;
+        (product) => {
+          this.item = product;
           this.getImageIfExists();
         },
-        (error) => {}
+        (_) => {}
       );
   }
 
-  getImageIfExists() {
+  private getImageIfExists(): void {
     this.productService
       .getImageFromBucket(this.item.id)
       .subscribe(
-        (response) => {
-          this.item.imageUrl = `${API_CONFIG.bucketBaseUrl}/prod${this.item.id}.jpg`;
+        (_) => {
+          this.item.imageUrl = this.generateImageUrlForProduct(this.item);
         },
-        (error) => {
-        }
+        (_) => {}
       );
   }
 
-  addToCart(item: ProductDTO) {
+  private generateImageUrlForProduct(product: ProductDTO): string {
+    return `${API_CONFIG.bucketBaseUrl}/prod${product.id}.jpg`;
+  }
+
+  public addToCart(item: ProductDTO): void {
     this.cartService.addProduct(item);
     this.router.navigateByUrl('cart');
   }
 
-  redirectToCartPage() {
+  public redirectToCartPage(): void {
     this.router.navigateByUrl('cart');
   }
 }

@@ -6,6 +6,10 @@ import { CartItem } from '../../models/cart-item';
 import { CartService } from '../../services/cart.service';
 import { ProductService } from '../../services/domain/product.service';
 
+
+/**
+ * Responsible for handling cart page.
+ */
 @Component({
   selector: 'page-cart',
   templateUrl: './cart.page.html',
@@ -13,59 +17,80 @@ import { ProductService } from '../../services/domain/product.service';
 })
 export class CartPage implements OnInit {
 
+  //---------------------------------------------------------------------------
+  //		Attributes
+  //---------------------------------------------------------------------------
   items: CartItem[];
 
+
+  //---------------------------------------------------------------------------
+  //		Constructor
+  //---------------------------------------------------------------------------
   constructor(
     public router: Router, 
-    //public navParams: NavParams, 
     public routeParams: ActivatedRoute,
     public cartService: CartService,
     public productService: ProductService
   ) {
   }
 
-  ngOnInit() {
-    const cart = this.cartService.getCart();
-    this.items = cart.items;
+
+  //---------------------------------------------------------------------------
+  //		Methods
+  //---------------------------------------------------------------------------
+  public ngOnInit(): void {
+    this.items = this.loadCartItems();
     this.loadImageUrls();
   }
 
-  loadImageUrls() {
+  private loadCartItems(): CartItem[] {
+    const cart = this.cartService.getCart();
+    
+    return cart.items;
+  }
+
+  private loadImageUrls(): void {
     for (let i = 0; i < this.items.length; i++) {
       let item = this.items[i];
 
       this.productService
         .getSmallImageFromBucket(item.product.id)
         .subscribe(
-          (response) => {
-            item.product.imageUrl = `${API_CONFIG.bucketBaseUrl}/prod${item.product.id}-small.jpg`;
+          (_) => {
+            item.product.imageUrl = this.buildProductImageUrl(item);
           },
-          (error) => {}
+          (error) => {
+            console.error(error);
+          }
         );
     }
   }
 
-  removeProduct(product: ProductDTO) {
+  private buildProductImageUrl(item): string {
+    return `${API_CONFIG.bucketBaseUrl}/prod${item.product.id}-small.jpg`;
+  }
+
+  public removeProduct(product: ProductDTO): void {
     this.items = this.cartService.removeProduct(product).items;
   }
 
-  increaseQuantity(product: ProductDTO) {
+  public increaseQuantity(product: ProductDTO): void {
     this.items = this.cartService.increaseQuantity(product).items;
   }
 
-  decreaseQuantity(product: ProductDTO) {
+  public decreaseQuantity(product: ProductDTO): void {
     this.items = this.cartService.decreaseQuantity(product).items;
   }
 
-  getTotal(): number {
+  public getTotal(): number {
     return this.cartService.getTotal();
   }
 
-  goOn() {
+  public goOn(): void {
     this.router.navigateByUrl('categories');
   }
 
-  checkout() {
+  public checkout(): void {
     this.router.navigateByUrl('pick-address');
   }
 }

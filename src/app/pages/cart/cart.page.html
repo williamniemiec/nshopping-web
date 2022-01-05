@@ -18,7 +18,7 @@
           <div class="cart-item">
             <div class="cart-item-left">
               <ion-thumbnail item-start>
-                <img [src]="item.product?.imageUrl || 'assets/images/prod.jpg'" />
+                <img [src]="item.product?.imageUrl || 'assets/images/prod.jpg'" alt="product image" />
               </ion-thumbnail>
               <p class="card-item-name">{{item.product.name}}</p>
             </div>
@@ -33,16 +33,19 @@
             </div>
           </div>
         </ion-item>
+
         <ion-item *ngIf="getTotal() > 0">
           <div class="card-item">
             <p class="card-item-key">Total:</p>
             <p class="card-item-value">{{getTotal()}}</p>
           </div>
         </ion-item>
+
         <ion-item *ngIf="getTotal() <= 0">
           <h1>Empty cart</h1>
         </ion-item>
       </ion-list>
+
       <ion-button expand="block" (click)="goOn()">Go on</ion-button>
       <ion-button expand="block" *ngIf="getTotal() > 0" color="secondary" (click)="checkout()">Checkout</ion-button>
     </div>

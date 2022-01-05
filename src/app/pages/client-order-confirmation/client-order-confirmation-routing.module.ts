@@ -10,6 +10,10 @@ const routes: Array<Route> = [
   }
 ];
 
+
+/**
+ * Responsible for handling client order confirmation page routes.
+ */
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],

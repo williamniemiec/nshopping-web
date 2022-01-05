@@ -8,6 +8,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
+/**
+ * Responsible for managing sign up page context.
+ */
 @NgModule({
   declarations: [
     SignUpPage,

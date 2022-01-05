@@ -10,6 +10,10 @@ const routes: Array<Route> = [
   }
 ];
 
+
+/**
+ * Responsible for handling product detail page routes.
+ */
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],

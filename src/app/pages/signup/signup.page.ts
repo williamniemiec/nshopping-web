@@ -8,6 +8,10 @@ import { CityService } from '../../services/domain/city.service';
 import { ClientService } from '../../services/domain/client.service';
 import { StateService } from '../../services/domain/state.service';
 
+
+/**
+ * Responsible for representing sign up page.
+ */
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.page.html',
@@ -15,39 +19,32 @@ import { StateService } from '../../services/domain/state.service';
 })
 export class SignUpPage implements OnInit {
 
+  //---------------------------------------------------------------------------
+  //		Attributes
+  //---------------------------------------------------------------------------
   formGroup: FormGroup;
   states: StateDTO[];
   cities: CityDTO[];
 
+
+  //---------------------------------------------------------------------------
+  //		Constructor
+  //---------------------------------------------------------------------------
   constructor(
     public router: Router, 
-    //public navParams: NavParams, 
     public formBuilder: FormBuilder,
     public cityService: CityService,
     public stateService: StateService,
     public clientService: ClientService,
     public alertController: AlertController
   ) {
-    this.formGroup = formBuilder.group({
-      name: ['Fulano 2', [Validators.required, Validators.minLength(5), Validators.maxLength(120)]],
-      email: ['fulano2@gmail.com', [Validators.required, Validators.email]],
-      type: ['1', [Validators.required]],
-      documentId: ['06134596280', [Validators.required, Validators.minLength(11), Validators.maxLength(14)]],
-      password: ['123', [Validators.required]],
-      streetName: ['Rua Via', [Validators.required]],
-      number: ['25', [Validators.required]],
-      apt: ['Apto 3', []],
-      district: ['Copacabana', []],
-      zip: ['10828333', [Validators.required]],
-      phone1 : ['977261827', [Validators.required]],
-      phone2 : ['', []],
-      phone3 : ['', []],
-      stateId : [null, [Validators.required]],
-      cityId : [null, [Validators.required]]      
-    });
   }
 
-  ngOnInit() {
+
+  //---------------------------------------------------------------------------
+  //		Methods
+  //---------------------------------------------------------------------------
+  public ngOnInit(): void {
     this.stateService
       .findAll()
       .subscribe(
@@ -56,11 +53,11 @@ export class SignUpPage implements OnInit {
           this.formGroup.controls.stateId.setValue(this.states[0].id);
           this.updateCities();
         },
-        (error) => {}
+        (_) => {}
       );
   }
 
-  updateCities() {
+  private updateCities(): void {
     const selectedState = this.formGroup.controls.stateId.value;
 
     this.cityService
@@ -70,31 +67,38 @@ export class SignUpPage implements OnInit {
           this.cities = response;
           this.formGroup.controls.cityId.setValue(null)
         },
-        (error) => {}
+        (_) => {}
       );
   }
 
-  signupUser() {
+  public signupUser(): void {
     this.clientService
       .insert(this.formGroup.value)
       .subscribe(
-        (response) => {
+        (_) => {
           this.showInsertOf();
         },
-      (error) => {}
+        (_) => {}
       );
   }
 
-  async showInsertOf() {
-    const alert = await this.alertController.create({
-      header: "Success!",
-      message: "Registration has successfully completed",
+  private async showInsertOf(): Promise<void> {
+    const alert = await this.createAlert(
+      'Success!',
+      'Registration has successfully completed'
+    );
+
+    alert.present();
+  }
+
+  private createAlert(title: string, message: string): Promise<HTMLIonAlertElement> {
+    return this.alertController.create({
+      header: title,
+      message: message,
       backdropDismiss: false,
       buttons: [
         {text: "Ok", handler: () => {this.router.navigateByUrl('/home')}}
       ]
     });
-
-    alert.present();
   }
 }

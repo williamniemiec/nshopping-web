@@ -4,13 +4,10 @@ import { API_CONFIG } from '../../config/api.config';
 import { CategoryDTO } from '../../dto/category.dto';
 import { CategoryService } from '../../services/domain/category.service';
 
-/**
- * Generated class for the CategoriesPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
+/**
+ * Responsible for handling categories page.
+ */
 @Component({
   selector: 'page-categories',
   templateUrl: 'categories.page.html',
@@ -18,31 +15,43 @@ import { CategoryService } from '../../services/domain/category.service';
 })
 export class CategoriesPage implements OnInit {
 
+  //---------------------------------------------------------------------------
+  //		Attributes
+  //---------------------------------------------------------------------------
   items: CategoryDTO[];
   bucketBaseUrl: string = API_CONFIG.bucketBaseUrl;
 
+
+  //---------------------------------------------------------------------------
+  //		Constructor
+  //---------------------------------------------------------------------------
   constructor(
     public router: Router, 
-    //public navParams: NavParams,
     public routeParams: ActivatedRoute,
     public categoryService: CategoryService
   ) {
   }
 
-  ngOnInit() {
+
+  //---------------------------------------------------------------------------
+  //		Methods
+  //---------------------------------------------------------------------------
+  public ngOnInit(): void {
     this.categoryService
       .findAll()
       .subscribe(
-        (response) => this.items = response,
-        (error) => {}
+        (categories) => this.items = categories,
+        (error) => {
+          console.error(error);
+        }
       );
   }
 
-  showProducts(categoryId) {
-    this.router.navigateByUrl('products/' + categoryId);
+  public showProducts(categoryId: string): void {
+    this.router.navigateByUrl(`products/${categoryId}`);
   }
 
-  redirectToCartPage() {
+  public redirectToCartPage(): void {
     this.router.navigateByUrl('cart');
   }
 }

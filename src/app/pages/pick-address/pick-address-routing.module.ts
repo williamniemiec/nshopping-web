@@ -10,6 +10,10 @@ const routes: Array<Route> = [
   }
 ];
 
+
+/**
+ * Responsible for handling pick address page routes.
+ */
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],

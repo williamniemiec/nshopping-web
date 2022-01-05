@@ -4,6 +4,10 @@ import { MenuController } from '@ionic/angular';
 import { CredentialsDTO } from '../../dto/credentials.dto';
 import { AuthService } from '../../services/auth.service';
 
+
+/**
+ * Responsible for representing home page.
+ */
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -11,52 +15,69 @@ import { AuthService } from '../../services/auth.service';
 })
 export class HomePage implements OnInit {
 
-  credentials: CredentialsDTO = {
-    email: "",
-    password: ""
-  };
+  //---------------------------------------------------------------------------
+  //		Attributes
+  //---------------------------------------------------------------------------
+  credentials: CredentialsDTO;
 
+
+  //---------------------------------------------------------------------------
+  //		Constructor
+  //---------------------------------------------------------------------------
   constructor(
     public router: Router, 
     public menu: MenuController,
     public authService: AuthService
   ) {
-
+    this.credentials = {
+      email: "",
+      password: ""
+    };
   }
 
-  login() {
+
+  //---------------------------------------------------------------------------
+  //		Methods
+  //---------------------------------------------------------------------------
+  public ngOnInit(): void {
+    this.menu.enable(false);
+  }
+
+  public login(): void {
     this.authService
       .authenticate(this.credentials)
       .subscribe(
         (response) => {
-          this.authService.successfulLogin(response.headers.get('Authorization'));
+          this.authService.successfulLogin(this.getAuthorization(response));
           this.router.navigateByUrl('/categories');
         },
-        (error) => {}
+        (error) => {
+          console.error(error);
+        }
       );
   }
 
-  ngOnInit() {
-    this.menu.enable(false);
+  private getAuthorization(response): string {
+    return response.headers.get('Authorization');
   }
 
-  ionViewDidLeave() {
+  public ionViewDidLeave(): void {
     this.menu.enable(true);
   }
 
-  ionViewDidEnter() {
+  public ionViewDidEnter(): void {
     this.authService
       .refreshToken()
       .subscribe(
         (response) => {
-          this.authService.successfulLogin(response.headers.get('Authorization'));
+          this.authService.successfulLogin(this.getAuthorization(response));
           this.router.navigateByUrl('/categories');
         },
         (error) => {}
       );
   }
 
-  signup() {
+  public signup(): void {
     this.router.navigateByUrl('/signup');
   }
 }

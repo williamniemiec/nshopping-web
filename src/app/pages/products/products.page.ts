@@ -1,10 +1,14 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { LoadingController, NavParams } from '@ionic/angular';
+import { LoadingController } from '@ionic/angular';
 import { API_CONFIG } from '../../config/api.config';
 import { ProductDTO } from '../../dto/product.dto';
 import { ProductService } from '../../services/domain/product.service';
 
+
+/**
+ * Responsible for representing products page.
+ */
 @Component({
   selector: 'page-products',
   templateUrl: 'products.page.html',
@@ -12,10 +16,17 @@ import { ProductService } from '../../services/domain/product.service';
 })
 export class ProductsPage implements OnInit {
 
+  //---------------------------------------------------------------------------
+  //		Attributes
+  //---------------------------------------------------------------------------
   items: ProductDTO[] = [];
   page: number = 0;
   linesPerPage: number = 10;
 
+
+  //---------------------------------------------------------------------------
+  //		Constructor
+  //---------------------------------------------------------------------------
   constructor(
     public router: Router, 
     private routeParams: ActivatedRoute,
@@ -24,28 +35,25 @@ export class ProductsPage implements OnInit {
   ) {
   }
 
-  async presentLoading() {
-    const loader = await this.loadingCtrl.create({
-      message: "Please wait..."
-    });
-    loader.present();
-    return loader;
+
+  //---------------------------------------------------------------------------
+  //		Methods
+  //---------------------------------------------------------------------------
+  public ngOnInit(): void {
+    this.loadProducts();
   }
 
-  doRefresh(refresher) {
+  public doRefresh(refresher): void {
     this.page = 0;
     this.items = [];
     this.loadProducts();
+    
     setTimeout(() => {
       refresher.complete();
     }, 1000);
   }
 
-  ngOnInit() {
-    this.loadProducts();
-  }
-
-  async loadProducts() {
+  private async loadProducts(): Promise<void> {
     const categoryId = this.routeParams.snapshot.params.id;
     const loader = await this.presentLoading();
 
@@ -53,41 +61,53 @@ export class ProductsPage implements OnInit {
       .findByCategory(categoryId, this.page, this.linesPerPage)
       .subscribe(
         (response) => {
-          const start = this.items.length;
           this.items = this.items.concat(response['content']);
-          const end = this.items.length - 1;
-          this.loadImageUrls(start, end);
+          this.loadImageUrls();
           loader.dismiss();
         },
-        (error) => {
+        (_) => {
           loader.dismiss();
         }
       );
-      
-     //console.log('PRODUCTS PARAMS: ', this.routeParams.params.subscribe((p) => console.log(p.id)));
-     //console.log(this.routeParams.snapshot.params)
   }
 
-  loadImageUrls(start: number, end: number) {
+  private async presentLoading(): Promise<HTMLIonLoadingElement> {
+    const loader = await this.loadingCtrl.create({
+      message: "Please wait..."
+    });
+
+    loader.present();
+    
+    return loader;
+  }
+
+  private loadImageUrls(): void {
+    const start = this.items.length;
+    const end = this.items.length - 1;
+
     for (let i = start; i < end; i++) {
       let item = this.items[i];
 
       this.productService
         .getSmallImageFromBucket(item.id)
         .subscribe(
-          (response) => {
-            item.imageUrl = `${API_CONFIG.bucketBaseUrl}/prod${item.id}-small.jpg`;
+          (_) => {
+            item.imageUrl = this.generateImageUrlForProduct(item);
           },
-          (error) => {}
+          (_) => {}
         );
     }
   }
 
-  showDetails(productId: string) {
+  private generateImageUrlForProduct(product: ProductDTO): string {
+    return `${API_CONFIG.bucketBaseUrl}/prod${product.id}-small.jpg`;
+  }
+
+  public showDetails(productId: string): void {
     this.router.navigateByUrl(`product-detail/${productId}`);
   }
 
-  loadMoreProducts(infiniteScroll) {
+  public loadMoreProducts(infiniteScroll): void {
     this.page++;
     this.loadProducts();
 
@@ -96,7 +116,7 @@ export class ProductsPage implements OnInit {
     }, 1000);
   }
 
-  redirectToCartPage() {
+  public redirectToCartPage(): void {
     this.router.navigateByUrl('cart');
   }
 }

@@ -2,13 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import { NavParams } from '@ionic/angular';
 import { API_CONFIG } from '../../config/api.config';
 import { ClientDTO } from '../../dto/client.dto';
 import { ClientService } from '../../services/domain/client.service';
 import { ImageService } from '../../services/image.service';
 import { StorageService } from '../../services/storage.service';
 
+
+/**
+ * Responsible for representing profile page.
+ */
 @Component({
   selector: 'page-profile',
   templateUrl: 'profile.page.html',
@@ -16,116 +19,156 @@ import { StorageService } from '../../services/storage.service';
 })
 export class ProfilePage implements OnInit {
 
+  //---------------------------------------------------------------------------
+  //		Attributes
+  //---------------------------------------------------------------------------
   client: ClientDTO;
   picture: string;
   cameraOn: boolean = false;
   profileImage;
 
+
+  //---------------------------------------------------------------------------
+  //		Constructor
+  //---------------------------------------------------------------------------
   constructor(
     public router: Router, 
-    //public navParams: NavParams,
     public storageService: StorageService,
     public clientService: ClientService,
-    //private camera: Camera,
     public imageService: ImageService,
     public sanitizer: DomSanitizer
   ) {
     this.profileImage = 'assets/images/avatar-blank.png';
   }
 
-  ngOnInit() {
+
+  //---------------------------------------------------------------------------
+  //		Methods
+  //---------------------------------------------------------------------------
+  public ngOnInit(): void {
     this.loadData();
   }
 
-  loadData() {
-    let localUser = this.storageService.getLocalUser();
-
-    if (localUser && localUser.email) {
-      this.clientService
-        .findByEmail(localUser.email)
-        .subscribe(
-          (response) => {
-            this.client = response as ClientDTO;
-            this.getImageIfExists();
-          },
-          (error) => {
-            this.router.navigateByUrl('/home');
-          }
-      );
+  private loadData(): void {
+    if (this.isAuthenticated()) {
+      this.parseAuthenticatedUser();
     }
     else {
       this.router.navigateByUrl('/home');
     }
   }
 
-  getImageIfExists() {
+  private isAuthenticated(): boolean {
+    const localUser = this.storageService.getLocalUser();
+
+    return  (localUser != null)
+            && (localUser != undefined)
+            && (localUser.email != null)
+            && (localUser.email != undefined);
+  }
+
+  private parseAuthenticatedUser(): void {
+    const localUser = this.storageService.getLocalUser();
+
+    this.clientService
+      .findByEmail(localUser.email)
+      .subscribe(
+        (response) => {
+          this.client = response as ClientDTO;
+          this.loadProfileImageIfExists();
+        },
+        (_) => {
+          this.router.navigateByUrl('/home');
+        }
+    );
+  }
+
+  private loadProfileImageIfExists(): void {
     this.clientService
       .getImageFromBucket(this.client.id)
       .subscribe(
         (response) => {
-          this.client.imageUrl = `${API_CONFIG.bucketBaseUrl}/cp${this.client.id}.jpg`;
-          //this.profileImage = this.client?.imageUrl || 'assets/images/avatar-blank.png'
+          this.client.imageUrl = this.generateClientProfileImage(this.client);
           this.imageService.blobToDataURL(response).then(dataUrl => {
             this.profileImage = this.sanitizer.bypassSecurityTrustUrl(dataUrl as string);
           });
         },
-        (error) => {
-          this.profileImage = 'assets/images/avatar-blank.png';
+        (_) => {
+          this.profileImage = this.generateNoProfileImage();
         }
       );
   }
 
-  getCameraPicture() {
-    this.cameraOn = true;
-    const options: CameraOptions = {
+  private generateClientProfileImage(client: ClientDTO): string {
+    return `${API_CONFIG.bucketBaseUrl}/cp${client.id}.jpg`;;
+  }
+
+  private generateNoProfileImage(): string {
+    return 'assets/images/avatar-blank.png';
+  }
+
+  public getCameraPicture(): void {
+    const options = this.buildTakePictureOptions();
+
+    this.openCameraDevice(options);
+  }
+
+  private buildTakePictureOptions(): CameraOptions {
+    return {
       quality: 100,
       destinationType: Camera.DestinationType.DATA_URL,
       encodingType: Camera.EncodingType.JPEG,
       mediaType: Camera.MediaType.PICTURE
     };
+  }
+
+  private openCameraDevice(options: CameraOptions): void {
+    this.cameraOn = true;
 
     Camera.getPicture(options).then((imageData) => {
-      this.picture = 'data:image/jpeg;base64,' + imageData;
+      this.picture = this.buildImageData(imageData);
       this.cameraOn = false;
-    }, (err) => {
+    }, 
+    (error) => {
       this.cameraOn = false;
-      console.log("Camera issue:" + err);
+      console.error("Camera issue:" + error);
     });
   }
 
-  getGalleryPicture() {
-    this.cameraOn = true;
-    const options: CameraOptions = {
+  private buildImageData(imageData): string {
+    return `data:image/jpeg;base64,${imageData}`;
+  }
+
+  public getGalleryPicture(): void {
+    const options = this.buildOpenGalleryOptions();
+
+    this.openCameraDevice(options);
+  }
+
+  private buildOpenGalleryOptions(): CameraOptions {
+    return {
       quality: 100,
       destinationType: Camera.DestinationType.DATA_URL,
       encodingType: Camera.EncodingType.JPEG,
       mediaType: Camera.MediaType.PICTURE,
       sourceType: Camera.PictureSourceType.PHOTOLIBRARY
     };
-
-    Camera.getPicture(options).then((imageData) => {
-      this.picture = 'data:image/jpeg;base64,' + imageData;
-      this.cameraOn = false;
-    }, (err) => {
-      this.cameraOn = false;
-      console.log("Camera issue:" + err);
-    });
   }
 
-  sendPicture() {
+  public sendPicture(): void {
     this.clientService
       .uploadPicture(this.picture)
       .subscribe(
-        (response) => {
+        (_) => {
           this.picture = null;
           this.client.imageUrl = null;
-          this.getImageIfExists();
+          this.loadProfileImageIfExists();
         },
-        (error) => {}
+        (_) => {}
       );
   }
 
-  cancel() {
+  public cancel(): void {
     this.picture = null;
   }
 }

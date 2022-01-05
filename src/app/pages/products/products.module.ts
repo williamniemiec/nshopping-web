@@ -5,6 +5,9 @@ import { IonicModule } from '@ionic/angular';
 import { ProductsPageRoutingModule } from './products-routing.module';
 
 
+/**
+ * Responsible for managing products page context.
+ */
 @NgModule({
   declarations: [
     ProductsPage,

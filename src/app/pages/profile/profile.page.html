@@ -17,7 +17,7 @@
       <div class="profile">
         <div class="profile-info">
           <ion-avatar class="profile-photo">
-            <img class="circle" [src]="profileImage" />
+            <img class="circle" [src]="profileImage" alt="profile image" />
           </ion-avatar>
         </div>
         <div class="profile-info">
@@ -30,15 +30,16 @@
         <ion-card-header>
           Change profile photo
         </ion-card-header>
+        
         <ion-item *ngIf="picture">
-          <img [src]="picture">
+          <img [src]="picture" alt="new profile image">
         </ion-item>
+        
         <ion-item>
           <ion-button expand="block" (click)="getCameraPicture()" [disabled]="cameraOn">Camera</ion-button>
-          <ion-button expand="block" fill="outline" (click)="getGalleryPicture()" [disabled]="cameraOn">Gallery
-          </ion-button>
-          <button *ngIf="picture" ion-button block (click)="sendPicture()">Send image</button>
-          <button *ngIf="picture" ion-button block (click)="cancel()">Cancel</button>
+          <ion-button expand="block" fill="outline" (click)="getGalleryPicture()" [disabled]="cameraOn">Gallery</ion-button>
+          <ion-button *ngIf="picture" expand="block" (click)="sendPicture()">Send image</ion-button>
+          <ion-button *ngIf="picture" expand="block" (click)="cancel()">Cancel</ion-button>
         </ion-item>
       </ion-card>
     </div>

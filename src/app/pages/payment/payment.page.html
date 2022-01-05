@@ -4,8 +4,8 @@
       <ion-menu-toggle>
         <ion-menu-button></ion-menu-button>
       </ion-menu-toggle>
-      <ion-back-button  defaultHref="home"></ion-back-button>
-  </ion-buttons>
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
     <ion-title>Payment</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -34,6 +34,7 @@
             <ion-select-option *ngFor="let i of installments; first as f" [value]="i">{{i}}</ion-select-option>
           </ion-select>
         </ion-item>
+
         <ion-button expand="block" type="submit" [disabled]="formGroup.invalid">Next</ion-button>
       </form>
     </div>

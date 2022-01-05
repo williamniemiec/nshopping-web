@@ -5,6 +5,9 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 
 
+/**
+ * Responsible for managing cart page context.
+ */
 @NgModule({
   declarations: [
     CartPage,
