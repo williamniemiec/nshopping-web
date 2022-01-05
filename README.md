@@ -6,7 +6,8 @@
 	<a href="https://github.com/williamniemiec/nshopping-web/actions/workflows/windows.yml"><img src="https://github.com/williamniemiec/nshopping-web/actions/workflows/windows.yml/badge.svg" alt=""></a>
 	<a href="https://github.com/williamniemiec/nshopping-web/actions/workflows/macos.yml"><img src="https://github.com/williamniemiec/nshopping-web/actions/workflows/macos.yml/badge.svg" alt=""></a>
 	<a href="https://github.com/williamniemiec/nshopping-web/actions/workflows/ubuntu.yml"><img src="https://github.com/williamniemiec/nshopping-web/actions/workflows/ubuntu.yml/badge.svg" alt=""></a>
-	<a href="http://java.oracle.com"><img src="https://img.shields.io/badge/java-11+-D0008F.svg" alt="Java compatibility"></a>
+	<a href="http://node.dev"><img src="https://img.shields.io/badge/NodeJS-15+-D0008F.svg" alt="NodeJS compatibility"></a>
+    <a href="https://ionicframework.com"><img src="https://img.shields.io/badge/Ionic-5-D0008F.svg" alt="Ionic compatibility"></a>
 	<a href="https://github.com/williamniemiec/nshopping-web/releases"><img src="https://img.shields.io/github/v/release/williamniemiec/nshopping-web" alt="Release"></a>
 	<a href="https://github.com/williamniemiec/nshopping-web/blob/master/LICENSE"><img src="https://img.shields.io/github/license/williamniemiec/nshopping-web" alt="License"></a>
 </p>
@@ -29,6 +30,7 @@ The hosting service Heroku may have a certain delay (~ 1 min) for uploading the 
 
 ## ✔ Requiremens
 - [NodeJS](https://nodejs.dev);
+- [Cordova](https://cordova.apache.org);
 - [Ionic Framework](https://ionicframework.com);
 
 ## ℹ How to run
