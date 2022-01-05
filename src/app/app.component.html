@@ -7,15 +7,16 @@
     </ion-header>
 
     <ion-content>
-      <ion-list *ngFor="let page of pages">
+      <ion-list *ngFor="let page of menuPages">
         <ion-menu-toggle auto-hide="true">
           <ion-item [routerLink]="page.url" routerDirection="forward">
-              <ion-icon [name]="page.icon" slot="start"></ion-icon>
-                 {{page.title}} 
+            <ion-icon [name]="page.icon" slot="start"></ion-icon>
+            {{page.title}}
           </ion-item>
         </ion-menu-toggle>
-        </ion-list>
+      </ion-list>
     </ion-content>
   </ion-menu>
+  
   <ion-router-outlet id="main-content"></ion-router-outlet>
 </ion-app>
