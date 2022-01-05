@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AddressDTO } from '../../dto/address.dto';
@@ -33,8 +34,12 @@ export class PickAddressPage implements OnInit {
     public routeParams: ActivatedRoute,
     public storageService: StorageService,
     public clientService: ClientService,
-    public cartService: CartService
+    public cartService: CartService,
+    public authService: AuthService
   ) {
+    if (!this.authService.isAuthenticated()) {
+      this.router.navigateByUrl('/home');
+    }
   }
 
 

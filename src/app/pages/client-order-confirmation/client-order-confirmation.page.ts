@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AddressDTO } from '../../dto/address.dto';
@@ -37,8 +38,13 @@ export class ClientOrderConfirmationPage implements OnInit {
     public routeParams: ActivatedRoute,
     public clientService: ClientService,
     public cartService: CartService,
+    public authService: AuthService,
     public clientOrderService: ClientOrderService
   ) {
+    if (!this.authService.isAuthenticated()) {
+      this.router.navigateByUrl('/home');
+    }
+
     this.clientOrder = JSON.parse(routeParams.snapshot.params.order);
   }
 

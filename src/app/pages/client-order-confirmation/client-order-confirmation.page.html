@@ -4,14 +4,16 @@
       <ion-menu-toggle>
         <ion-menu-button></ion-menu-button>
       </ion-menu-toggle>
-      <ion-back-button defaultHref="home"></ion-back-button>
+      <ion-back-button defaultHref="categories"></ion-back-button>
     </ion-buttons>
-    <ion-title *ngIf="!orderId">Order confirmation</ion-title>
-    <ion-title *ngIf="orderId">Order confirmed</ion-title>
+    <ion-title *ngIf="!orderId">
+      Order confirmation
+    </ion-title>
+    <ion-title *ngIf="orderId">
+      Order confirmed
+    </ion-title>
   </ion-toolbar>
 </ion-header>
-
-
 
 <ion-content padding>
   <div class="container">
@@ -27,22 +29,37 @@
               <div class="card-item">
                 <div class="card-item-left">
                   <ion-thumbnail item-start>
-                    <img [src]="item.product.imageUrl || 'assets/images/prod.jpg'" alt="product image">
+                    <img 
+                      [src]="item.product.imageUrl || 'assets/images/prod.jpg'" 
+                      alt="product image"
+                    >
                   </ion-thumbnail>
-                  <p class="card-item-key card-item-name">{{item.product.name}}</p>
+                  <p class="card-item-key card-item-name">
+                    {{item.product.name}}
+                  </p>
                 </div>
                 <div class="card-item-right">
-                  <p class="card-item-value">{{item.product.price | currency}}</p>
-                  <p class="card-item-value">x{{item.amount}}</p>
-                  <p class="card-item-value">{{item.product.price * item.amount | currency}}</p>
+                  <p class="card-item-value">
+                    {{item.product.price | currency}}
+                  </p>
+                  <p class="card-item-value">
+                    x{{item.amount}}
+                  </p>
+                  <p class="card-item-value">
+                    {{item.product.price * item.amount | currency}}
+                  </p>
                 </div>
               </div>
             </ion-item>
 
             <ion-item>
               <div class="card-item">
-                <h2 class="card-item-key">Total</h2>
-                <h2 class="card-item-value">{{total() | currency}}</h2>
+                <h2 class="card-item-key">
+                  Total
+                </h2>
+                <h2 class="card-item-value">
+                  {{total() | currency}}
+                </h2>
               </div>
             </ion-item>
           </ion-list>
@@ -54,8 +71,12 @@
           </ion-card-header>
           <ion-item>
             <div class="card-item">
-              <p class="card-item-key">{{client?.name}}</p>
-              <p class="card-item-value">{{client?.email}}</p>
+              <p class="card-item-key">
+                {{client?.name}}
+              </p>
+              <p class="card-item-value">
+                {{client?.email}}
+              </p>
             </div>
           </ion-item>
         </ion-card>
@@ -67,9 +88,15 @@
 
           <ion-item>
             <div class="card-item">
-              <p class="card-item-key">{{address?.streetName}}, {{address?.number}}</p>
-              <p class="card-item-value">{{address?.apt}} {{address?.district}} {{address?.zip}}</p>
-              <p class="card-item-value">{{address?.city.name}}, {{address?.city.state.name}}</p>
+              <p class="card-item-key">
+                {{address?.streetName}}, {{address?.number}}
+              </p>
+              <p class="card-item-value">
+                {{address?.apt}} {{address?.district}} {{address?.zip}}
+              </p>
+              <p class="card-item-value">
+                {{address?.city.name}}, {{address?.city.state.name}}
+              </p>
             </div>
           </ion-item>
         </ion-card>
@@ -81,19 +108,37 @@
 
           <ion-item *ngIf="clientOrder.payment['@type'] == 'cardPayment'">
             <div class="card-item">
-              <p class="card-item-key">Card payment</p>
-              <p class="card-item-value">Installments: {{clientOrder.payment.installments}}</p>
+              <p class="card-item-key">
+                Card payment
+              </p>
+              <p class="card-item-value">
+                Installments: {{clientOrder.payment.installments}}
+              </p>
             </div>
           </ion-item>
           <ion-item *ngIf="clientOrder.payment['@type'] == 'boletoPayment'">
             <div class="card-item">
-              <p class="card-item-key">Boleto payment</p>
+              <p class="card-item-key">
+                Boleto payment
+              </p>
             </div>
           </ion-item>
         </ion-card>
 
-        <ion-button *ngIf="!orderId" expand="block" (click)="checkout()">Checkout</ion-button>
-        <ion-button fill="outline" expand="block" (click)="backToCart()">Back</ion-button>
+        <ion-button 
+          *ngIf="!orderId" 
+          expand="block" 
+          (click)="checkout()"
+        >
+          Checkout
+        </ion-button>
+        <ion-button 
+          fill="outline" 
+          expand="block" 
+          (click)="backToCart()"
+        >
+          Back
+        </ion-button>
       </div>
 
       <div *ngIf="orderId">
@@ -103,12 +148,22 @@
           </ion-card-header>
           <ion-item>
             <div class="card-item">
-              <p class="card-item-key">Order code: {{orderId}}</p>
-              <p class="card-item-value">Check your email</p>
+              <p class="card-item-key">
+                Order code: {{orderId}}
+              </p>
+              <p class="card-item-value">
+                Check your email
+              </p>
             </div>
           </ion-item>
         </ion-card>
-        <ion-button fill="outline" expand="block" (click)="backToHome()">Back</ion-button>
+        <ion-button 
+          fill="outline" 
+          expand="block" 
+          (click)="backToHome()"
+        >
+          Back
+        </ion-button>
       </div>
     </div>
   </div>

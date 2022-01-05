@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
@@ -31,8 +32,12 @@ export class ProductsPage implements OnInit {
     public router: Router, 
     private routeParams: ActivatedRoute,
     public productService: ProductService,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    public authService: AuthService
   ) {
+    if (!this.authService.isAuthenticated()) {
+      this.router.navigateByUrl('/home');
+    }
   }
 
 

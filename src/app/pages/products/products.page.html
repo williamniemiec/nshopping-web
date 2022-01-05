@@ -4,9 +4,11 @@
       <ion-menu-toggle>
         <ion-menu-button></ion-menu-button>
       </ion-menu-toggle>
-      <ion-back-button defaultHref="home"></ion-back-button>
+      <ion-back-button defaultHref="categories"></ion-back-button>
     </ion-buttons>
-    <ion-title>Products</ion-title>
+    <ion-title>
+      Products
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -26,12 +28,19 @@
       <div class="product">
         <div class="product-left">
           <ion-thumbnail item-start>
-            <img [src]="item.imageUrl || 'assets/images/prod.jpg'" alt="product image" />
+            <img 
+              [src]="item.imageUrl || 'assets/images/prod.jpg'" 
+              alt="product image" 
+            />
           </ion-thumbnail>
-          <h2 class="product-name">{{item.name}}</h2>
+          <h2 class="product-name">
+            {{item.name}}
+          </h2>
         </div>
         <div class="product-right">
-          <p>{{item.price | currency}}</p>
+          <p>
+            {{item.price | currency}}
+          </p>
         </div>
       </div>
     </ion-item>

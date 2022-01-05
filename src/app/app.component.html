@@ -9,7 +9,7 @@
     <ion-content>
       <ion-list *ngFor="let page of menuPages">
         <ion-menu-toggle auto-hide="true">
-          <ion-item [routerLink]="page.url" routerDirection="forward">
+          <ion-item button (click)="openPage(page)">
             <ion-icon [name]="page.icon" slot="start"></ion-icon>
             {{page.title}}
           </ion-item>

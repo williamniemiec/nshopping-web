@@ -4,9 +4,11 @@
       <ion-menu-toggle>
         <ion-menu-button></ion-menu-button>
       </ion-menu-toggle>
-      <ion-back-button defaultHref="home"></ion-back-button>
+      <ion-back-button defaultHref="categories"></ion-back-button>
     </ion-buttons>
-    <ion-title>Closing order</ion-title>
+    <ion-title>
+      Closing order
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -19,9 +21,15 @@
         </ion-list-header>
         <ion-item button *ngFor="let item of items" (click)="handleAddressSelection(item)">
           <div class="address-item">
-            <p class="address-name">{{item.streetName}}, {{item.number}}</p>
-            <p class="address-number">{{item.apt}} {{item.district}} {{item.zip}}</p>
-            <p class="address-location">{{item.city.name}}, {{item.city.state.name}}</p>
+            <p class="address-name">
+              {{item.streetName}}, {{item.number}}
+            </p>
+            <p class="address-number">
+              {{item.apt}} {{item.district}} {{item.zip}}
+            </p>
+            <p class="address-location">
+              {{item.city.name}}, {{item.city.state.name}}
+            </p>
           </div>
         </ion-item>
       </ion-list>

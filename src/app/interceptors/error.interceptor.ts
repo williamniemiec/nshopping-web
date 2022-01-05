@@ -62,6 +62,5 @@ export class ErrorInterceptor implements ErrorHandler {
 export const ErrorInterceptorProvider = {
 
   provide: ErrorHandler,
-  useClass: ErrorInterceptor,
-  multi: true,
+  useClass: ErrorInterceptor
 };

@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
@@ -36,8 +37,13 @@ export class ProfilePage implements OnInit {
     public storageService: StorageService,
     public clientService: ClientService,
     public imageService: ImageService,
-    public sanitizer: DomSanitizer
+    public sanitizer: DomSanitizer,
+    public authService: AuthService
   ) {
+    if (!this.authService.isAuthenticated()) {
+      this.router.navigateByUrl('/home');
+    }
+
     this.profileImage = 'assets/images/avatar-blank.png';
   }
 

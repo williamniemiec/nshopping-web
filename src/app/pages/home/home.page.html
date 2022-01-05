@@ -2,21 +2,52 @@
   <div class="container-centered">
     <div id="login-area">
       <div class="logo-area">
-        <img class="logo-img" src="/assets/images/logo.png" alt="logo" />
+        <img 
+          class="logo-img" 
+          src="/assets/images/logo.png" 
+          alt="logo" 
+        />
       </div>
       <form>
         <ion-item>
-          <ion-label stacked>Email</ion-label>
-          <ion-input [(ngModel)]="credentials.email" name="email" type="text" color="primary"></ion-input>
+          <ion-label stacked>
+            Email
+          </ion-label>
+          <ion-input 
+            [(ngModel)]="credentials.email" 
+            name="email" 
+            type="text" 
+            color="primary"
+          >
+          </ion-input>
         </ion-item>
         <ion-item>
-          <ion-label stacked>Password</ion-label>
-          <ion-input [(ngModel)]="credentials.password" name="password" type="password" color="primary"></ion-input>
+          <ion-label stacked>
+            Password
+          </ion-label>
+          <ion-input 
+            [(ngModel)]="credentials.password" 
+            name="password" 
+            type="password" 
+            color="primary"
+          >
+          </ion-input>
         </ion-item>
-        <ion-button expand="block" (click)="login()">Sign in</ion-button>
+        <ion-button 
+          expand="block" 
+          (click)="login()"
+        >
+          Sign in
+        </ion-button>
       </form>
 
-      <ion-button expand="block" fill="outline" (click)="signup()">Sign up</ion-button>
+      <ion-button 
+        expand="block" 
+        fill="outline" 
+        (click)="signup()"
+      >
+        Sign up
+      </ion-button>
     </div>
   </div>
 </ion-content>

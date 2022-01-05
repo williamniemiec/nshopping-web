@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -29,8 +30,13 @@ export class PaymentPage {
   constructor(
     public router: Router, 
     public routeParams: ActivatedRoute,
-    public formBuilder: FormBuilder
+    public formBuilder: FormBuilder,
+    public authService: AuthService
   ) {
+    if (!this.authService.isAuthenticated()) {
+      this.router.navigateByUrl('/home');
+    }
+
     this.clientOrder = JSON.parse(routeParams.snapshot.params.address);
     this.formGroup = this.buildFormGroup(formBuilder);
     this.installments = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];

@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { API_CONFIG } from '../../config/api.config';
@@ -28,8 +29,12 @@ export class CategoriesPage implements OnInit {
   constructor(
     public router: Router, 
     public routeParams: ActivatedRoute,
-    public categoryService: CategoryService
+    public categoryService: CategoryService,
+    public authService: AuthService
   ) {
+    if (!this.authService.isAuthenticated()) {
+      this.router.navigateByUrl('/home');
+    }
   }
 
 

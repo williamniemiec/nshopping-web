@@ -4,9 +4,11 @@
       <ion-menu-toggle>
         <ion-menu-button></ion-menu-button>
       </ion-menu-toggle>
-      <ion-back-button defaultHref="home"></ion-back-button>
+      <ion-back-button defaultHref="categories"></ion-back-button>
     </ion-buttons>
-    <ion-title>Profile</ion-title>
+    <ion-title>
+      Profile
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -17,12 +19,20 @@
       <div class="profile">
         <div class="profile-info">
           <ion-avatar class="profile-photo">
-            <img class="circle" [src]="profileImage" alt="profile image" />
+            <img 
+              class="circle" 
+              [src]="profileImage" 
+              alt="profile image" 
+            />
           </ion-avatar>
         </div>
         <div class="profile-info">
-          <p class="profile-name" text-center>{{client?.name}}</p>
-          <p class="profile-email">{{client?.email}}</p>
+          <p class="profile-name" text-center>
+            {{client?.name}}
+          </p>
+          <p class="profile-email">
+            {{client?.email}}
+          </p>
         </div>
       </div>
 
@@ -32,14 +42,42 @@
         </ion-card-header>
         
         <ion-item *ngIf="picture">
-          <img [src]="picture" alt="new profile image">
+          <img 
+            [src]="picture" 
+            alt="new profile image" 
+          />
         </ion-item>
         
         <ion-item>
-          <ion-button expand="block" (click)="getCameraPicture()" [disabled]="cameraOn">Camera</ion-button>
-          <ion-button expand="block" fill="outline" (click)="getGalleryPicture()" [disabled]="cameraOn">Gallery</ion-button>
-          <ion-button *ngIf="picture" expand="block" (click)="sendPicture()">Send image</ion-button>
-          <ion-button *ngIf="picture" expand="block" (click)="cancel()">Cancel</ion-button>
+          <ion-button 
+            expand="block" 
+            (click)="getCameraPicture()" 
+            [disabled]="cameraOn"
+          >
+            Camera
+          </ion-button>
+          <ion-button 
+            expand="block" 
+            fill="outline" 
+            (click)="getGalleryPicture()" 
+            [disabled]="cameraOn"
+          >
+            Gallery
+          </ion-button>
+          <ion-button 
+            *ngIf="picture" 
+            expand="block" 
+            (click)="sendPicture()"
+          >
+            Send image
+          </ion-button>
+          <ion-button 
+            *ngIf="picture" 
+            expand="block" 
+            (click)="cancel()"
+          >
+            Cancel
+          </ion-button>
         </ion-item>
       </ion-card>
     </div>

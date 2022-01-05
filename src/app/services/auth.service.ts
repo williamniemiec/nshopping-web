@@ -68,6 +68,11 @@ export class AuthService {
     return authorization.substring(7);
   }
 
+  public isAuthenticated(): boolean {
+    return  (this.storageService.getLocalUser() != null)
+            && (this.storageService.getLocalUser() != undefined);
+  }
+
   public logout(): void {
     this.storageService.setLocalUser(null);
   }

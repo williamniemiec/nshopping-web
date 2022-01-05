@@ -66,6 +66,12 @@ export class HomePage implements OnInit {
   }
 
   public ionViewDidEnter(): void {
+    if (!this.authService.isAuthenticated()) {
+      return;
+    }
+
+    console.log(this.authService.isAuthenticated())
+
     this.authService
       .refreshToken()
       .subscribe(
@@ -73,8 +79,9 @@ export class HomePage implements OnInit {
           this.authService.successfulLogin(this.getAuthorization(response));
           this.router.navigateByUrl('/categories');
         },
-        (error) => {}
+        (_) => {}
       );
+      
   }
 
   public signup(): void {

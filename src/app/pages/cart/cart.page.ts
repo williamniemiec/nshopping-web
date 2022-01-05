@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { API_CONFIG } from '../../config/api.config';
@@ -30,8 +31,12 @@ export class CartPage implements OnInit {
     public router: Router, 
     public routeParams: ActivatedRoute,
     public cartService: CartService,
+    public authService: AuthService,
     public productService: ProductService
   ) {
+    if (!this.authService.isAuthenticated()) {
+      this.router.navigateByUrl('/home');
+    }
   }
 
 

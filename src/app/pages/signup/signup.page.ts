@@ -38,6 +38,23 @@ export class SignUpPage implements OnInit {
     public clientService: ClientService,
     public alertController: AlertController
   ) {
+    this.formGroup = formBuilder.group({
+      name: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(120)]],
+      email: ['', [Validators.required, Validators.email]],
+      type: ['', [Validators.required]],
+      documentId: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(14)]],
+      password: ['', [Validators.required]],
+      streetName: ['', [Validators.required]],
+      number: ['', [Validators.required]],
+      apt: ['', []],
+      district: ['', []],
+      zip: ['', [Validators.required]],
+      phone1 : ['', [Validators.required]],
+      phone2 : ['', []],
+      phone3 : ['', []],
+      stateId : [null, [Validators.required]],
+      cityId : [null, [Validators.required]]      
+    });
   }
 
 
@@ -57,7 +74,7 @@ export class SignUpPage implements OnInit {
       );
   }
 
-  private updateCities(): void {
+  public updateCities(): void {
     const selectedState = this.formGroup.controls.stateId.value;
 
     this.cityService
