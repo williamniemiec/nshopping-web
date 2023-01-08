@@ -1,9 +1,9 @@
 {
-  "name": "nshopping-Web",
+  "name": "nshopping-web",
   "version": "1.0.0",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
-  "private": true,
+  "author": "William Niemiec",
+  "homepage": "https://github.com/williamniemiec/nshopping-web",
+  "private": false,
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

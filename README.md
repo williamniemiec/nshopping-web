@@ -12,13 +12,13 @@
 	<a href="https://github.com/williamniemiec/nshopping-web/blob/master/LICENSE"><img src="https://img.shields.io/github/license/williamniemiec/nshopping-web" alt="License"></a>
 </p>
 <p align="center">
-	<a href='https://wniemiec-web-nshopping.herokuapp.com/'><img alt='Deploy' src='https://www.herokucdn.com/deploy/button.svg' width=200/></a>
+	<a href='https://wniemiec-web-nshopping.onrender.com/'><img alt='Deploy' src='https://render.com/images/deploy-to-render-button.svg' width=200/></a>
 </p>
 
 <hr />
 
 ## ❇ Introduction
-nShopping Web is a website built with Ionic Framework along with Angular for a simple shopping system. This application was made for the sole purpose of learning the Ionic framework better. You can interact with the project through the Heroku platform ([click here to access](https://wniemiec-web-nshopping.herokuapp.com/)).
+nShopping Web is a website built with Ionic Framework along with Angular for a simple shopping system. This application was made for the sole purpose of learning the Ionic framework better. You can interact with the project ([here](https://wniemiec-web-nshopping.onrender.com/)).
 
 ### Login information
 | Email| Password |
@@ -26,7 +26,7 @@ nShopping Web is a website built with Ionic Framework along with Angular for a s
 | william@email.com |123|
 
 ## ⚠ Warnings
-The hosting service Heroku may have a certain delay (~ 1 min) for uploading the application so the loading of the website may have a certain delay. 
+The hosting service may have a certain delay (~ 1 min) for uploading the application so the loading of the website may have a certain delay. 
 
 ## ✔ Requiremens
 - [NodeJS](https://nodejs.dev);
